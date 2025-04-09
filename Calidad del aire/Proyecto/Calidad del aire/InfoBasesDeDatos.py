@@ -5,7 +5,8 @@ import matplotlib.pyplot as plt
 import glob
 import os
 
-path=r'Calidad del aire\Proyecto\Datos'
+# path=r'Calidad del aire\Proyecto\Datos'
+path=r'Calidad del aire\Proyecto\Bases'
 all_files = glob.glob(os.path.join(path + "/*.csv"))
 
 data = []
@@ -30,6 +31,7 @@ frame2=frame.drop(columns=drop, axis=1)
 # print(frame.index)
 # print(frame.head(6))
 # print(frame.tail(6))
+# print(frame2.index)
 # print(frame['pm25'])
 
 frame3=frame2[(frame2['pm25']>0) & (frame2['pm25']<700)]
@@ -72,7 +74,7 @@ medias_nox.index.names = ["Año", "Mes", "Día"]
 medias_ozono = frame7.groupby([frame7.index.year,
                      frame7.index.month,
                      frame7.index.day])['ozono'].mean()
-                     
+
 medias_ozono.index.names = ["Año", "Mes", "Día"]
 
 # medias_co = frame8.groupby([frame8.index.year,
@@ -133,12 +135,12 @@ medias_so2.index = pd.to_datetime(frame9.groupby([frame9.index.year,
 # Graficar los puntos promedio de pm25 con respecto a la fecha
 plt.figure(figsize=(10, 6))
 plt.plot(medias_pm25.index, medias_pm25['pm25'], marker='.', linestyle='-', color='b', label='Promedio PM2.5')
-plt.plot(medias_no.index, medias_no['no'], marker='x', linestyle='-', color='r', label='Promedio NO')
+plt.plot(medias_no.index, medias_no['no'], marker='.', linestyle='-', color='r', label='Promedio NO')
 plt.plot(medias_no2.index, medias_no2['no2'], marker='.', linestyle='-', color='g', label='Promedio NO2')
-plt.plot(medias_nox.index, medias_nox['nox'], marker='+', linestyle='-', color='purple', label='Promedio NOX')
+plt.plot(medias_nox.index, medias_nox['nox'], marker='.', linestyle='-', color='purple', label='Promedio NOX')
 plt.plot(medias_ozono.index, medias_ozono['ozono'], marker='.', linestyle='-', color='y', label='Promedio Ozono')
 # plt.scatter(medias_co.index, medias_co['co'], marker='v', linestyle='-', color='orange', label='Promedio CO')
-plt.plot(medias_so2.index, medias_so2['so2'], marker='+', linestyle='-', color='orange', label='Promedio SO2')
+plt.plot(medias_so2.index, medias_so2['so2'], marker='.', linestyle='-', color='orange', label='Promedio SO2')
 plt.title('Promedio Diario de concentración', fontsize=14)
 plt.xlabel('Fecha', fontsize=12)
 plt.ylabel('Concentración contaminante (µg/m³)', fontsize=12)
