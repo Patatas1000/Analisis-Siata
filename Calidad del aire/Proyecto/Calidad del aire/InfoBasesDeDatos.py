@@ -84,7 +84,7 @@ medias_so2 = frame9.groupby([frame9.index.year,
                      frame9.index.day])['so2'].mean()
 medias_so2.index.names = ["Año", "Mes", "Día"]
 
-# print(frame3.head(35))
+# print(frame3.head(6))
 # print(medias_pm25.head(4))
 # print(medias_no.head(4))
 # print(medias_no2.head(4))
@@ -92,6 +92,12 @@ medias_so2.index.names = ["Año", "Mes", "Día"]
 # print(medias_ozono.head(4))
 # print(medias_co.head(4))
 # print(medias_so2.head(4))
+
+x = frame3.index.get_level_values(0) # Extrae los años de los indices del dataframe
+y = frame3.loc[:,['pm25']] # Extrae los valores de pm25 del dataframe
+
+plt.scatter(x,y)
+plt.show()
 
 # colors = ['#89FAB4', '#FAE4A0', '#FA837D', '#B049E3', '#E3BA5F', '#E35E54', '#6591EA', '#EB83C6', '#EB1551', '#1802F4']
 # styles = ['', '', '-+', '-o', '', '', '', '', '', '']
