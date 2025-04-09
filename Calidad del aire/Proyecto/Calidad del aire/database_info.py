@@ -4,11 +4,11 @@ import regex as rg
 import matplotlib.pyplot as plt
 import glob
 import os
-from all_stations import all
+# from all_stations import all
 
-def data():
-# path=r'Calidad del aire\Proyecto\Datos'
-    path=r'Calidad del aire\Proyecto\Bases'
+def data(path):
+    # path=r'Calidad del aire\Proyecto\Datos'
+    # path=r'Calidad del aire\Proyecto\Bases'
     all_files = glob.glob(os.path.join(path + "/*.csv"))
 
     data = []

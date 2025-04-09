@@ -7,6 +7,17 @@ import darkdetect
 import pywinstyles, sys
 from database_info import data
 from all_stations import all
+import numpy as np
+import pandas as pd
+import regex as rg
+import matplotlib.pyplot as plt
+import glob
+import os
+
+path=r'Calidad del aire\Proyecto\Bases'
+
+frame2=data(path)
+all(frame2)
 
 def ventana2():
     new_window = TopLevel()
