@@ -4,6 +4,11 @@ import regex as rg
 import matplotlib.pyplot as plt
 import glob
 import os
+import tkinter
+from tkinter import ttk
+import sv_ttk
+import darkdetect
+import pywinstyles, sys
 
 # path=r'Calidad del aire\Proyecto\Datos'
 path=r'Calidad del aire\Proyecto\Bases'
@@ -132,19 +137,46 @@ medias_so2.index = pd.to_datetime(frame9.groupby([frame9.index.year,
                                                     frame9.index.month,
                                                     frame9.index.day]).apply(lambda x: x.index[0]).values)  # Usar las fechas originales como índice
 
-# Graficar los puntos promedio de pm25 con respecto a la fecha
-plt.figure(figsize=(10, 6))
-plt.plot(medias_pm25.index, medias_pm25['pm25'], marker='.', linestyle='-', color='b', label='Promedio PM2.5')
-plt.plot(medias_no.index, medias_no['no'], marker='.', linestyle='-', color='r', label='Promedio NO')
-plt.plot(medias_no2.index, medias_no2['no2'], marker='.', linestyle='-', color='g', label='Promedio NO2')
-plt.plot(medias_nox.index, medias_nox['nox'], marker='.', linestyle='-', color='purple', label='Promedio NOX')
-plt.plot(medias_ozono.index, medias_ozono['ozono'], marker='.', linestyle='-', color='y', label='Promedio Ozono')
-# plt.scatter(medias_co.index, medias_co['co'], marker='v', linestyle='-', color='orange', label='Promedio CO')
-plt.plot(medias_so2.index, medias_so2['so2'], marker='.', linestyle='-', color='orange', label='Promedio SO2')
-plt.title('Promedio Diario de concentración', fontsize=14)
-plt.xlabel('Fecha', fontsize=12)
-plt.ylabel('Concentración contaminante (µg/m³)', fontsize=12)
-plt.grid(True, linestyle='--', alpha=0.6)
-plt.legend()
-plt.tight_layout()
-plt.show()
+# # Graficar los puntos promedio de pm25 con respecto a la fecha
+# plt.figure(figsize=(10, 6))
+# plt.plot(medias_pm25.index, medias_pm25['pm25'], marker='.', linestyle='-', color='b', label='Promedio PM2.5')
+# plt.plot(medias_no.index, medias_no['no'], marker='.', linestyle='-', color='r', label='Promedio NO')
+# plt.plot(medias_no2.index, medias_no2['no2'], marker='.', linestyle='-', color='g', label='Promedio NO2')
+# plt.plot(medias_nox.index, medias_nox['nox'], marker='.', linestyle='-', color='purple', label='Promedio NOX')
+# plt.plot(medias_ozono.index, medias_ozono['ozono'], marker='.', linestyle='-', color='y', label='Promedio Ozono')
+# # plt.scatter(medias_co.index, medias_co['co'], marker='v', linestyle='-', color='orange', label='Promedio CO')
+# plt.plot(medias_so2.index, medias_so2['so2'], marker='.', linestyle='-', color='orange', label='Promedio SO2')
+# plt.title('Promedio Diario de concentración', fontsize=14)
+# plt.xlabel('Fecha', fontsize=12)
+# plt.ylabel('Concentración contaminante (µg/m³)', fontsize=12)
+# plt.grid(True, linestyle='--', alpha=0.6)
+# plt.legend()
+# plt.tight_layout()
+# plt.show()
+
+######## Acá empieza la parte de ka GUI ##########
+root = tkinter.Tk()
+
+button = ttk.Button(root, text="Click me!")
+button.pack()
+
+# This is where the magic happens
+sv_ttk.set_theme(darkdetect.theme())
+
+def apply_theme_to_titlebar(root):
+    version = sys.getwindowsversion()
+
+    if version.major == 10 and version.build >= 22000:
+        # Set the title bar color to the background color on Windows 11 for better appearance
+        pywinstyles.change_header_color(root, "#1c1c1c" if sv_ttk.get_theme() == "dark" else "#fafafa")
+    elif version.major == 10:
+        pywinstyles.apply_style(root, "dark" if sv_ttk.get_theme() == "dark" else "normal")
+
+        # A hacky way to update the title bar's color on Windows 10 (it doesn't update instantly like on Windows 11)
+        root.wm_attributes("-alpha", 0.99)
+        root.wm_attributes("-alpha", 1)
+
+# Example usage (replace `root` with the reference to your main/Toplevel window)
+apply_theme_to_titlebar(root)
+
+root.mainloop()
