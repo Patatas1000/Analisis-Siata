@@ -27,22 +27,71 @@ drop=['calidad_pm1', 'pm1', 'calidad_pm10', 'pm10', 'calidad_pm25', 'calidad_no'
       'pliquida_ssr', 'calidad_pliquida_ssr', 'rglobal_ssr', 'calidad_rglobal_ssr', 'taire10_ssr', 'calidad_taire10_ssr', 'vviento_ssr', 'calidad_vviento_ssr']
 frame2=frame.drop(columns=drop, axis=1)
 
-
 # print(frame.index)
 # print(frame.head(6))
 # print(frame.tail(6))
 # print(frame['pm25'])
 
-frame3=frame2[(frame2['pm25']>0) & (frame2['pm25']<100)]
+frame3=frame2[(frame2['pm25']>0) & (frame2['pm25']<700)]
+
+frame4=frame2[(frame2['no']>0) & (frame2['no']<700)]
+
+frame5=frame2[(frame2['no2']>0) & (frame2['no2']<700)]
+
+frame6=frame2[(frame2['nox']>0) & (frame2['nox']<700)]
+
+frame7=frame2[(frame2['ozono']>0) & (frame2['ozono']<700)]
+
+frame8=frame2[(frame2['co']>0) & (frame2['co']<700)]
+
+frame9=frame2[(frame2['so2']>0) & (frame2['so2']<700)]
 
 # slize = pd.DataFrame(frame2.loc["2024-10-12",:]) # Secciona una parte del dataframe
 # print(slize) # Muestra un fragmento del dataframe donde habría una inconsistencia normalmente
-medias = frame3.groupby([frame3.index.year,
+
+medias_pm25 = frame3.groupby([frame3.index.year,
                      frame3.index.month,
                      frame3.index.day])['pm25'].mean()
-medias.index.names = ["Año", "Mes", "Día"]
+medias_pm25.index.names = ["Año", "Mes", "Día"]
+
+medias_no = frame4.groupby([frame4.index.year,
+                     frame4.index.month,
+                     frame4.index.day])['no'].mean()
+medias_no.index.names = ["Año", "Mes", "Día"]
+
+medias_no2 = frame5.groupby([frame5.index.year,
+                     frame5.index.month,
+                     frame5.index.day])['no2'].mean()
+medias_no2.index.names = ["Año", "Mes", "Día"]
+
+medias_nox = frame6.groupby([frame6.index.year,
+                     frame6.index.month,
+                     frame6.index.day])['nox'].mean()
+medias_nox.index.names = ["Año", "Mes", "Día"]
+
+medias_ozono = frame7.groupby([frame7.index.year,
+                     frame7.index.month,
+                     frame7.index.day])['ozono'].mean()
+medias_ozono.index.names = ["Año", "Mes", "Día"]
+
+medias_co = frame8.groupby([frame8.index.year,
+                     frame8.index.month,
+                     frame8.index.day])['co'].mean()
+medias_co.index.names = ["Año", "Mes", "Día"]
+
+medias_so2 = frame9.groupby([frame9.index.year,
+                     frame9.index.month,
+                     frame9.index.day])['so2'].mean()
+medias_so2.index.names = ["Año", "Mes", "Día"]
+
 # print(frame3.head(35))
-# print(medias.head(35)) # Muestra las primeras 35 del dataframe de promedios
+# print(medias_pm25.head(4)) # Muestra las primeras 35 del dataframe de promedios
+# print(medias_no.head(4))
+# print(medias_no2.head(4))
+# print(medias_nox.head(4))
+# print(medias_ozono.head(4))
+# print(medias_co.head(4))
+# print(medias_so2.head(4))
 
 # colors = ['#89FAB4', '#FAE4A0', '#FA837D', '#B049E3', '#E3BA5F', '#E35E54', '#6591EA', '#EB83C6', '#EB1551', '#1802F4']
 # styles = ['', '', '-+', '-o', '', '', '', '', '', '']
