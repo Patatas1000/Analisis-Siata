@@ -154,29 +154,29 @@ medias_so2.index = pd.to_datetime(frame9.groupby([frame9.index.year,
 # plt.tight_layout()
 # plt.show()
 
-######## Acá empieza la parte de ka GUI ##########
-root = tkinter.Tk()
+# ######## Acá empieza la parte de ka GUI ##########
+# root = tkinter.Tk()
 
-button = ttk.Button(root, text="Click me!")
-button.pack()
+# button = ttk.Button(root, text="Click me!")
+# button.pack()
 
-# This is where the magic happens
-sv_ttk.set_theme(darkdetect.theme())
+# # This is where the magic happens
+# sv_ttk.set_theme(darkdetect.theme())
 
-def apply_theme_to_titlebar(root):
-    version = sys.getwindowsversion()
+# def apply_theme_to_titlebar(root):
+#     version = sys.getwindowsversion()
 
-    if version.major == 10 and version.build >= 22000:
-        # Set the title bar color to the background color on Windows 11 for better appearance
-        pywinstyles.change_header_color(root, "#1c1c1c" if sv_ttk.get_theme() == "dark" else "#fafafa")
-    elif version.major == 10:
-        pywinstyles.apply_style(root, "dark" if sv_ttk.get_theme() == "dark" else "normal")
+#     if version.major == 10 and version.build >= 22000:
+#         # Set the title bar color to the background color on Windows 11 for better appearance
+#         pywinstyles.change_header_color(root, "#1c1c1c" if sv_ttk.get_theme() == "dark" else "#fafafa")
+#     elif version.major == 10:
+#         pywinstyles.apply_style(root, "dark" if sv_ttk.get_theme() == "dark" else "normal")
 
-        # A hacky way to update the title bar's color on Windows 10 (it doesn't update instantly like on Windows 11)
-        root.wm_attributes("-alpha", 0.99)
-        root.wm_attributes("-alpha", 1)
+#         # A hacky way to update the title bar's color on Windows 10 (it doesn't update instantly like on Windows 11)
+#         root.wm_attributes("-alpha", 0.99)
+#         root.wm_attributes("-alpha", 1)
 
-# Example usage (replace `root` with the reference to your main/Toplevel window)
-apply_theme_to_titlebar(root)
+# # Example usage (replace `root` with the reference to your main/Toplevel window)
+# apply_theme_to_titlebar(root)
 
-root.mainloop()
+# root.mainloop()

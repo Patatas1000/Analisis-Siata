@@ -7,11 +7,25 @@ import pywinstyles, sys
 
 root = tkinter.Tk()
 
-button = ttk.Button(root, text="Click me!")
-button = ttk.Button(root, text="Click me!")
-button = ttk.Button(root, text="Click me!")
-button = ttk.Button(root, text="Click me!")
-button.pack()
+frame_botones = ttk.Frame(root)
+frame_botones.pack(pady=10)
+
+botones = [
+    ("Todas las estaciones"),
+    ("Análisis por estación"),
+    ("Índice parcial horario"),
+    ("Índice global horario"),
+    ("Cancelar")
+]
+
+for texto in botones:
+    boton = ttk.Button(
+        frame_botones,
+        text=texto,
+        width=20,
+        command=lambda t=texto: manejar_evento(t),
+    )
+    boton.pack(side="left", padx=5)
 
 # This is where the magic happens
 sv_ttk.set_theme(darkdetect.theme())
