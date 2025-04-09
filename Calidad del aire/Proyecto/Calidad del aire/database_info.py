@@ -4,11 +4,6 @@ import regex as rg
 import matplotlib.pyplot as plt
 import glob
 import os
-import tkinter
-from tkinter import ttk
-import sv_ttk
-import darkdetect
-import pywinstyles, sys
 from all_stations import all
 
 def data():

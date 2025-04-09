@@ -5,7 +5,8 @@ from tkinter import *
 import sv_ttk
 import darkdetect
 import pywinstyles, sys
-
+from database_info import data
+from all_stations import all
 
 def ventana2():
     new_window = TopLevel()
