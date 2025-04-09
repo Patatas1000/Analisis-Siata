@@ -41,7 +41,7 @@ medias = frame3.groupby([frame3.index.year,
                      frame3.index.month,
                      frame3.index.day])['pm25'].mean()
 medias.index.names = ["Año", "Mes", "Día"]
-print(frame3.head(35))
+# print(frame3.head(35))
 # print(medias.head(35)) # Muestra las primeras 35 del dataframe de promedios
 
 # colors = ['#89FAB4', '#FAE4A0', '#FA837D', '#B049E3', '#E3BA5F', '#E35E54', '#6591EA', '#EB83C6', '#EB1551', '#1802F4']
