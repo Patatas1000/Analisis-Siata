@@ -72,6 +72,7 @@ medias_nox.index.names = ["Año", "Mes", "Día"]
 medias_ozono = frame7.groupby([frame7.index.year,
                      frame7.index.month,
                      frame7.index.day])['ozono'].mean()
+                     
 medias_ozono.index.names = ["Año", "Mes", "Día"]
 
 # medias_co = frame8.groupby([frame8.index.year,
