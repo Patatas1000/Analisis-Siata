@@ -17,7 +17,7 @@ import os
 path=r'Calidad del aire\Proyecto\Bases'
 
 frame2=data(path)
-all(frame2)
+# all(frame2)
 
 def ventana2():
     new_window = TopLevel()
