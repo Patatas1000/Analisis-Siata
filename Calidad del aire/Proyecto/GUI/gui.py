@@ -23,10 +23,6 @@ def ventana5():
     new_window = TopLevel()
     new_window.title('Gráfica de contaminantes en todas lass estaciones')
 
-def _quit():
-    root.quit()     # stops mainloop
-    root.destroy() 
-
 def ventana_principal():
     # Crear la ventana principal
     ventana = tk.Tk()
