@@ -51,8 +51,8 @@ frame9=frame2[(frame2['so2']>0) & (frame2['so2']<700)]
 
 medias_pm25 = frame3.groupby([frame3.index.year,
                      frame3.index.month,
-                     frame3.index.day])['pm25'].mean()
-medias_pm25.index.names = ["Año", "Mes", "Día"]
+                     frame3.index.day])['pm25'].mean() # Calcula los promedios para la variable pm25
+medias_pm25.index.names = ["Año", "Mes", "Día"] # Crea un dataframe con los promedios diarios de pm25
 
 medias_no = frame4.groupby([frame4.index.year,
                      frame4.index.month,
@@ -85,7 +85,7 @@ medias_so2 = frame9.groupby([frame9.index.year,
 medias_so2.index.names = ["Año", "Mes", "Día"]
 
 # print(frame3.head(35))
-# print(medias_pm25.head(4)) # Muestra las primeras 35 del dataframe de promedios
+# print(medias_pm25.head(4))
 # print(medias_no.head(4))
 # print(medias_no2.head(4))
 # print(medias_nox.head(4))
