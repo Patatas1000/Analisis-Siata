@@ -35,10 +35,10 @@ def apply_theme_to_titlebar(ventana):
 def windows_theme(ventana):
     sv_ttk.set_theme(darkdetect.theme())
 
-def ventana2():
-    ventana2 = tk.Tk()
+def ventana2(parent):
+    ventana2 = tk.Toplevel(parent)  # Cambiado de Tk() a Toplevel()
     ventana2.title('Análisis de datos en todas las estaciones')
-    ventana2.geometry("800x600")  # Ajustar el tamaño de la ventana
+    ventana2.geometry("1000x600")  # Ajustar el tamaño de la ventana
 
     # Configuración de fuentes
     fuente_titulo = ("Arial", 20, "bold")
@@ -48,12 +48,54 @@ def ventana2():
     # Título
     titulo = ttk.Label(ventana2, text="Calidad del aire", font=fuente_descripcion)
     titulo.pack(pady=10)
-    windows_theme(ventana2)
-    # pywinstyles.apply_style(ventana2,'acrylic')
-    # Example usage (replace `root` with the reference to your main/Toplevel window)
-    apply_theme_to_titlebar(ventana2)
-    # ventana2.mainloop()
 
+    # Botones
+    frame_botones = ttk.Frame(ventana2)
+    frame_botones.pack(pady=10)
+
+    botones = [
+        ("Todas las estaciones"),
+        ("Análisis por estación"),
+        ("Índice parcial horario"),
+        ("Índice global horario"),
+        ("Cancelar")
+    ]
+
+    for texto in botones:
+        boton = ttk.Button(
+            frame_botones,
+            text=texto,
+            width=20,
+            command=lambda t=texto: manejar_evento(t),
+        )
+        boton.pack(side="left", padx=5)
+
+    # Texto para salir
+    texto_cancelar = ttk.Label(
+        ventana,
+        text="\nPresione Cancelar para salir del programa",
+        font=fuente_descripcion,
+    )
+    texto_cancelar.pack(pady=10)
+
+    def manejar_evento(evento):
+        if evento == "Cancelar":
+            ventana.destroy()
+        elif evento == "Todas las estaciones":
+            ventana2(ventana)  # Pasar la ventana principal como padre
+        elif evento == "Análisis por estación":
+            ventana3()
+        elif evento == "Índice parcial horario":
+            ventana4()
+        elif evento == "Índice global horario":
+            ventana5()
+
+    # Aplicar el tema después de inicializar ventana2
+    windows_theme(ventana2)
+    apply_theme_to_titlebar(ventana2)
+
+    # Asegurarse de que ventana2 también se cierre cuando ventana se cierre
+    ventana2.protocol("WM_DELETE_WINDOW", ventana2.destroy)  # Manejar cierre manual de ventana2
 
 def ventana3():
     new_window = TopLevel()
@@ -133,13 +175,6 @@ def ventana_principal():
     frame_botones = ttk.Frame(ventana)
     frame_botones.pack(pady=10)
 
-    # botones = [
-    #     ("Calidad del aire", "LightCyan", "DarkSlateGrey"),
-    #     ("Valores límites diarios", "LightCyan", "DarkSlateGrey"),
-    #     ("Índice parcial horario", "LightCyan", "DarkSlateGrey"),
-    #     ("Índice global horario", "LightCyan", "DarkSlateGrey"),
-    #     ("Cancelar", "DarkCyan", "Pink"),
-    # ]
     botones = [
         ("Todas las estaciones"),
         ("Análisis por estación"),
@@ -165,12 +200,11 @@ def ventana_principal():
     )
     texto_cancelar.pack(pady=10)
 
-    # Función para manejar eventos
     def manejar_evento(evento):
         if evento == "Cancelar":
             ventana.destroy()
         elif evento == "Todas las estaciones":
-            ventana2()
+            ventana2(ventana)  # Pasar la ventana principal como padre
         elif evento == "Análisis por estación":
             ventana3()
         elif evento == "Índice parcial horario":
