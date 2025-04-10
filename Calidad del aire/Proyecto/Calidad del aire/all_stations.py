@@ -8,7 +8,7 @@ import glob
 import os
 
 def all(frame2):
-    
+
     frame3=frame2[(frame2['pm25']>0) & (frame2['pm25']<700)]
 
     frame4=frame2[(frame2['no']>0) & (frame2['no']<700)]

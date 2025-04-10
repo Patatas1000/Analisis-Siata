@@ -64,7 +64,7 @@ def ventana2(parent):
     # Función para manejar eventos
     def manejar_evento2(evento):
         if evento == "Cancelar":
-            parent.destroy()  # Usar `parent` en lugar de `ventana`
+            ventana2.destroy()  # Usar `parent` en lugar de `ventana`
         elif evento == "Gráfico de promedio diario":
             all(frame2)  # Llamar a la función `all` con frame2
         elif evento == "Análisis por estación":
