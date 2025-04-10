@@ -138,7 +138,7 @@ def ventana_principal():
         if evento == "Cancelar":
             ventana.destroy()
         elif evento == "Todas las estaciones":
-            ventana2()
+            all(frame2)
         elif evento == "Análisis por estación":
             ventana3()
         elif evento == "Índice parcial horario":
@@ -169,3 +169,5 @@ def ventana_principal():
 
 
 ventana_principal()
+
+
