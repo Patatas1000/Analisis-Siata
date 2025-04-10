@@ -100,15 +100,15 @@ def ventana2(parent):
     ventana2.protocol("WM_DELETE_WINDOW", ventana2.destroy)
 
 def ventana3():
-    new_window = TopLevel()
+    new_window = tk.Toplevel()
     new_window.title('Gráfica de contaminantes en todas lass estaciones')
 
 def ventana4():
-    new_window = TopLevel()
+    new_window = tk.Toplevel()
     new_window.title('Gráfica de contaminantes en todas lass estaciones')
 
 def ventana5():
-    new_window = TopLevel()
+    new_window = tk.Toplevel()
     new_window.title('Gráfica de contaminantes en todas lass estaciones')
 
 def ventana_principal():
