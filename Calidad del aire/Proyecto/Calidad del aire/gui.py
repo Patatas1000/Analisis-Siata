@@ -19,9 +19,41 @@ path=r'Calidad del aire\Proyecto\Bases'
 frame2=data(path)
 # all(frame2)
 
+def apply_theme_to_titlebar(ventana):
+    version = sys.getwindowsversion()
+
+    if version.major == 10 and version.build >= 22000:
+        # Set the title bar color to the background color on Windows 11 for better appearance
+        pywinstyles.change_header_color(ventana, "#1c1c1c" if sv_ttk.get_theme() == "dark" else "#fafafa")
+    elif version.major == 10:
+        pywinstyles.apply_style(ventana, "dark" if sv_ttk.get_theme() == "dark" else "normal")
+
+        # A hacky way to update the title bar's color on Windows 10 (it doesn't update instantly like on Windows 11)
+        ventana.wm_attributes("-alpha", 0.99)
+        ventana.wm_attributes("-alpha", 1)
+    
+def windows_theme(ventana):
+    sv_ttk.set_theme(darkdetect.theme())
+
 def ventana2():
-    new_window = TopLevel()
-    new_window.title('Gráfica de contaminantes en todas lass estaciones')
+    ventana2 = tk.Tk()
+    ventana2.title('Análisis de datos en todas las estaciones')
+    ventana2.geometry("800x600")  # Ajustar el tamaño de la ventana
+
+    # Configuración de fuentes
+    fuente_titulo = ("Arial", 20, "bold")
+    fuente_texto = ("Arial", 16, "bold")
+    fuente_descripcion = ("Arial", 14)
+
+    # Título
+    titulo = ttk.Label(ventana2, text="Calidad del aire", font=fuente_descripcion)
+    titulo.pack(pady=10)
+    windows_theme(ventana2)
+    # pywinstyles.apply_style(ventana2,'acrylic')
+    # Example usage (replace `root` with the reference to your main/Toplevel window)
+    apply_theme_to_titlebar(ventana2)
+    # ventana2.mainloop()
+
 
 def ventana3():
     new_window = TopLevel()
@@ -138,7 +170,7 @@ def ventana_principal():
         if evento == "Cancelar":
             ventana.destroy()
         elif evento == "Todas las estaciones":
-            all(frame2)
+            ventana2()
         elif evento == "Análisis por estación":
             ventana3()
         elif evento == "Índice parcial horario":
@@ -146,25 +178,13 @@ def ventana_principal():
         elif evento == "Índice global horario":
             ventana5()
 
-    sv_ttk.set_theme(darkdetect.theme())
-
-    def apply_theme_to_titlebar(ventana):
-        version = sys.getwindowsversion()
-
-        if version.major == 10 and version.build >= 22000:
-            # Set the title bar color to the background color on Windows 11 for better appearance
-            pywinstyles.change_header_color(ventana, "#1c1c1c" if sv_ttk.get_theme() == "dark" else "#fafafa")
-        elif version.major == 10:
-            pywinstyles.apply_style(ventana, "dark" if sv_ttk.get_theme() == "dark" else "normal")
-
-            # A hacky way to update the title bar's color on Windows 10 (it doesn't update instantly like on Windows 11)
-            ventana.wm_attributes("-alpha", 0.99)
-            ventana.wm_attributes("-alpha", 1)
-
-    # Example usage (replace `root` with the reference to your main/Toplevel window)
+    # sv_ttk.set_theme(darkdetect.theme())
+    windows_theme(ventana)
+    # pywinstyles.apply_style(ventana,'acrylic')
     apply_theme_to_titlebar(ventana)
 
     # Ejecutar el bucle de la ventana
+    # ventana.call('wm', 'attributes', '.', '-topmost', '1')
     ventana.mainloop()
 
 
