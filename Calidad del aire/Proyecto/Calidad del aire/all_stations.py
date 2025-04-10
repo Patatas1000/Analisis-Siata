@@ -8,7 +8,6 @@ from database_info import data
 import glob
 import os
 
-
 def all(frame2):
     columnas = ['pm25', 'no', 'no2', 'nox', 'ozono', 'so2']  # Lista de columnas a procesar
     medias_dict = {}  # Diccionario para almacenar las series de medias
