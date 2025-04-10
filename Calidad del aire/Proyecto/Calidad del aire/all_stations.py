@@ -9,6 +9,9 @@ import os
 
 def all(frame2):
 
+    # for i in columns:
+    #     framex=frame2[(frame2[i]>0) & (frame2[i]<700)]
+
     frame3=frame2[(frame2['pm25']>0) & (frame2['pm25']<700)]
 
     frame4=frame2[(frame2['no']>0) & (frame2['no']<700)]
