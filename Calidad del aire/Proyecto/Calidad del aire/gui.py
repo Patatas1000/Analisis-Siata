@@ -36,7 +36,7 @@ def windows_theme(ventana):
     sv_ttk.set_theme(darkdetect.theme())
 
 def ventana2(parent):
-    ventana2 = tk.Toplevel(parent)  # Cambiado de Tk() a Toplevel()
+    ventana2 = tk.Toplevel(parent)  # Ventana secundaria ligada a la principal
     ventana2.title('Análisis de datos en todas las estaciones')
     ventana2.geometry("1000x600")  # Ajustar el tamaño de la ventana
 
@@ -54,35 +54,19 @@ def ventana2(parent):
     frame_botones.pack(pady=10)
 
     botones = [
-        ("Todas las estaciones"),
+        ("Gráfico de promedio diario"),
         ("Análisis por estación"),
         ("Índice parcial horario"),
         ("Índice global horario"),
         ("Cancelar")
     ]
 
-    for texto in botones:
-        boton = ttk.Button(
-            frame_botones,
-            text=texto,
-            width=20,
-            command=lambda t=texto: manejar_evento(t),
-        )
-        boton.pack(side="left", padx=5)
-
-    # Texto para salir
-    texto_cancelar = ttk.Label(
-        ventana,
-        text="\nPresione Cancelar para salir del programa",
-        font=fuente_descripcion,
-    )
-    texto_cancelar.pack(pady=10)
-
-    def manejar_evento(evento):
+    # Función para manejar eventos
+    def manejar_evento2(evento):
         if evento == "Cancelar":
-            ventana.destroy()
-        elif evento == "Todas las estaciones":
-            ventana2(ventana)  # Pasar la ventana principal como padre
+            parent.destroy()  # Usar `parent` en lugar de `ventana`
+        elif evento == "Gráfico de promedio diario":
+            all(frame2)  # Llamar a la función `all` con frame2
         elif evento == "Análisis por estación":
             ventana3()
         elif evento == "Índice parcial horario":
@@ -90,12 +74,30 @@ def ventana2(parent):
         elif evento == "Índice global horario":
             ventana5()
 
+    # Crear botones y asociar manejar_evento2
+    for texto in botones:
+        boton = ttk.Button(
+            frame_botones,
+            text=texto,
+            width=20,
+            command=lambda t=texto: manejar_evento2(t),
+        )
+        boton.pack(side="left", padx=5)
+
+    # Texto para salir
+    texto_cancelar = ttk.Label(
+        ventana2,  # Cambiado a ventana2
+        text="\nPresione Cancelar para salir del programa",
+        font=fuente_descripcion,
+    )
+    texto_cancelar.pack(pady=10)
+
     # Aplicar el tema después de inicializar ventana2
     windows_theme(ventana2)
     apply_theme_to_titlebar(ventana2)
 
-    # Asegurarse de que ventana2 también se cierre cuando ventana se cierre
-    ventana2.protocol("WM_DELETE_WINDOW", ventana2.destroy)  # Manejar cierre manual de ventana2
+    # Asegurar que ventana2 se cierre adecuadamente
+    ventana2.protocol("WM_DELETE_WINDOW", ventana2.destroy)
 
 def ventana3():
     new_window = TopLevel()
@@ -223,5 +225,3 @@ def ventana_principal():
 
 
 ventana_principal()
-
-
