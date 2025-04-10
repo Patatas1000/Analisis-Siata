@@ -31,8 +31,8 @@ def data(path):
         'dviento_ssr', 'calidad_dviento_ssr', 'haire10_ssr', 'calidad_haire10_ssr', 'p_ssr', 'calidad_p_ssr',
         'pliquida_ssr', 'calidad_pliquida_ssr', 'rglobal_ssr', 'calidad_rglobal_ssr', 'taire10_ssr', 'calidad_taire10_ssr', 'vviento_ssr', 'calidad_vviento_ssr']
     frame2=frame.drop(columns=drop, axis=1)
-    columns=frame2.columns
-    return(frame2,columns)
+    # columnas=frame2.columns
+    return(frame2)
 # data(path)
 # print(frame.index)
 # print(frame.head(6))
