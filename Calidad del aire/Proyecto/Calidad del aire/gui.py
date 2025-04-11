@@ -83,7 +83,7 @@ def ventana2(parent):
     fuente_descripcion = ("Arial", 14)
 
     # Título
-    titulo = ttk.Label(ventana2, text="Calidad del aire", font=fuente_descripcion)
+    titulo = ttk.Label(ventana2, text="En esta ventana puede revisar el gráfico de los valores diarios promedio para todos los contaminantes en todas las estaciones en la base de datos, además también puede visualizar las primeras 40 filas de los datos utilizados en este análisis, usando los botones para mostrar el gráfico y los datos respectivamente.", font=fuente_descripcion, wraplength=1100, justify="left")
     titulo.pack(pady=10)
 
     # Crear área para el gráfico
@@ -95,20 +95,18 @@ def ventana2(parent):
     frame_botones.pack(pady=10)
 
     botones = [
-        ("Gráfico de promedio\ndiario"),
-        ("Mostrar parte del\ndataframe"),
-        ("Cancelar\n")
+        ("Mostrar gráfico"),
+        ("Mostrar datos"),
+        ("Cancelar")
     ]
 
     # Función para manejar eventos
     def manejar_evento2(evento):
         if evento == "Cancelar\n":
             ventana2.destroy()  # Usar `parent` en lugar de `ventana`
-        elif evento == "Gráfico de promedio\ndiario":
+        elif evento == "Mostrar gráfico":
             all(frame2, frame_grafico)
-        # elif evento == "Gráfico de promedio\ndiario":
-        #     all(frame2)  # Llamar a la función `all` con frame2
-        elif evento == "Mostrar parte del\ndataframe":
+        elif evento == "Mostrar datos":
             mostrar_dataframe(frame2, frame_grafico)  # Llama a la función para mostrar el DataFrame
 
     # Crear botones y asociar manejar_evento2
