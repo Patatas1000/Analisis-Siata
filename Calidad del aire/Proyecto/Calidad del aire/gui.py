@@ -247,7 +247,7 @@ def ventana_principal():
     descripcion = ttk.Label(
         ventana,
         text=(
-            "Los purificadores de aire han sido desarrollados a medida que la tecnología y la contaminación ha avanzado; con el fin de reducir los compuestos químicos que contaminan y están presentes en el aire se realizan mediciones y, dados los valores obtenidos, se puede saber qué índice de contaminación está presente en tiempo real y qué tipo de alternativa de purificación se puede utilizar para combatirlo."
+            "Los purificadores de aire han sido desarrollados a medida que la tecnología y la contaminación ha avanzado; con el fin de reducir los compuestos químicos que contaminan y están presentes en el aire se realizan mediciones y, dados los valores obtenidos, se puede saber qué índice de contaminación está presente en tiempo real y qué tipo de alternativa de purificación se puede utilizar para combatirlo.\nEn lso dataframes pueden aparecer valores de -9999 o excesivamente altos, para algunos de los contaminantes, indicando que se no se hizo la medición en ese tiempo, o que se trata de una medición errada, estos datos se filtran de manera automática, al realizar las gráficas"
         ),
         font=fuente_descripcion,
         wraplength=1100,  # Ajustar el texto
