@@ -38,7 +38,7 @@ def windows_theme(ventana):
 def ventana2(parent):
     ventana2 = tk.Toplevel(parent)  # Ventana secundaria ligada a la principal
     ventana2.title('Análisis de datos en todas las estaciones')
-    ventana2.geometry("1000x600")  # Ajustar el tamaño de la ventana
+    ventana2.geometry("1200x800")  # Ajustar el tamaño de la ventana
 
     # Configuración de fuentes
     fuente_titulo = ("Arial", 20, "bold")
@@ -49,9 +49,15 @@ def ventana2(parent):
     titulo = ttk.Label(ventana2, text="Calidad del aire", font=fuente_descripcion)
     titulo.pack(pady=10)
 
+    # Crear área para el gráfico
+    frame_grafico = ttk.Frame(ventana2)
+    frame_grafico.pack(pady=20, fill="both", expand=True)
+
     # Botones
     frame_botones = ttk.Frame(ventana2)
     frame_botones.pack(pady=10)
+
+
 
     botones = [
         ("Gráfico de promedio\ndiario"),
@@ -64,7 +70,9 @@ def ventana2(parent):
         if evento == "Cancelar\n":
             ventana2.destroy()  # Usar `parent` en lugar de `ventana`
         elif evento == "Gráfico de promedio\ndiario":
-            all(frame2)  # Llamar a la función `all` con frame2
+            all(frame2, frame_grafico)
+        # elif evento == "Gráfico de promedio\ndiario":
+        #     all(frame2)  # Llamar a la función `all` con frame2
         elif evento == "Mostrar parte del\ndataframe":
             ventana3()
 
