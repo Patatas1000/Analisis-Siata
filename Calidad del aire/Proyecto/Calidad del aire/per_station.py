@@ -36,14 +36,14 @@ def mostrar_grafico_est(frame_filtrado, frame_contenido):
         for widget in frame_contenido.winfo_children():
             widget.destroy()
 
-        columnas = ['pm25', 'no', 'no2', 'nox', 'ozono', 'so2']
+        columnas = ['pm25','pm10', 'no', 'no2', 'nox', 'ozono', 'so2']
         medias_dict = {}
 
         for columna in columnas:
             frame_validado = frame_filtrado[(frame_filtrado[columna] > 0) & (frame_filtrado[columna] < 700)]
 
             if frame_validado.empty:
-                print(f"No hay datos válidos para la columna '{columna}'.")
+                # print(f"No hay datos válidos para la columna '{columna}'.")
                 continue
 
             medias = frame_validado.groupby([frame_validado.index.year,
@@ -56,7 +56,7 @@ def mostrar_grafico_est(frame_filtrado, frame_contenido):
             ).apply(lambda x: x.index[0])
 
             if fechas_validas.empty:
-                print(f"No hay fechas válidas para la columna '{columna}'.")
+                # print(f"No hay fechas válidas para la columna '{columna}'.")
                 continue
 
             medias_df = medias.to_frame(name=columna)
@@ -69,7 +69,7 @@ def mostrar_grafico_est(frame_filtrado, frame_contenido):
             return
 
         fig, ax = plt.subplots(figsize=(10, 6))
-        colores = ['b', 'r', 'g', 'purple', 'y', 'orange']
+        colores = ['b', 'r', 'g', 'purple', 'y', 'orange', 'c']
         for i, columna in enumerate(columnas):
             if columna in medias_dict:
                 ax.plot(medias_dict[columna].index, medias_dict[columna][columna],

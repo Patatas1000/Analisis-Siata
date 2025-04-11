@@ -45,7 +45,7 @@ def all(frame2, frame_grafico):
         for widget in frame_grafico.winfo_children():
             widget.destroy()
 
-        columnas = ['pm25', 'no', 'no2', 'nox', 'ozono', 'so2']  # Lista de columnas a procesar
+        columnas = ['pm25', 'pm10', 'no', 'no2', 'nox', 'ozono', 'so2']  # Lista de columnas a procesar
         medias_dict = {}
 
         for columna in columnas:
@@ -62,7 +62,7 @@ def all(frame2, frame_grafico):
 
         # Crear figura de matplotlib
         fig, ax = plt.subplots(figsize=(10, 6))
-        colores = ['b', 'r', 'g', 'purple', 'y', 'orange']
+        colores = ['b', 'r', 'g', 'purple', 'y', 'orange', 'c']  # Colores para las líneas
         for i, columna in enumerate(columnas):
             ax.plot(medias_dict[columna].index, medias_dict[columna][columna],
                     marker='.', linestyle='-', color=colores[i], label=f'Promedio {columna.capitalize()}')
