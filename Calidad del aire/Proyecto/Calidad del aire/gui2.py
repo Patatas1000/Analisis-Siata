@@ -22,91 +22,70 @@ path=r'Calidad del aire\Proyecto\Bases'
 frame2=data(path)
 
 def apply_theme_to_titlebar_dinamico(ventana):
-    # Almacenar ID del timer de after para cancelarlo posteriormente
     timer_id = None
 
     def actualizar_titulo():
-        nonlocal timer_id  # Declarar la variable como no local
+        nonlocal timer_id
         if not ventana.winfo_exists():
-            return  # No hacer nada si la ventana ha sido destruida
+            return
 
-        # Detectar el tema del sistema
         tema_actual = darkdetect.theme().lower()
 
         version = sys.getwindowsversion()
         if version.major == 10 and version.build >= 22000:
-            # Cambiar el color de la barra del título en Windows 11
             pywinstyles.change_header_color(ventana, "#1c1c1c" if tema_actual == "dark" else "#fafafa")
         elif version.major == 10:
             pywinstyles.apply_style(ventana, "dark" if tema_actual == "dark" else "normal")
-
-            # "Hack" para actualizar el color de la barra del título en Windows 10
+            
             ventana.wm_attributes("-alpha", 0.99)
             ventana.wm_attributes("-alpha", 1)
 
-        # Programar otra verificación en 1000 ms (1 segundo)
         timer_id = ventana.after(1000, actualizar_titulo)
 
     def on_close():
         nonlocal timer_id
         if timer_id:
-            ventana.after_cancel(timer_id)  # Cancelar el timer programado
-        ventana.destroy()  # Destruir la ventana
+            ventana.after_cancel(timer_id)
+        ventana.destroy()
 
-    # Configurar el protocolo de cierre de la ventana
     ventana.protocol("WM_DELETE_WINDOW", on_close)
 
-    # Comenzar la verificación periódica
     actualizar_titulo()
 
 def windows_theme_dinamico(ventana):
     def actualizar_tema():
-        # Detectar el tema del sistema
         nuevo_tema = darkdetect.theme().lower()
 
-        # Cambiar el tema de la ventana si es diferente
         if sv_ttk.get_theme() != nuevo_tema:
             sv_ttk.set_theme(nuevo_tema)
 
-        # Programar otra verificación en 1000 ms (1 segundo)
         ventana.after(1000, actualizar_tema)
 
-    # Comenzar la verificación periódica
     actualizar_tema()
 
 def ventana2(parent):
-    ventana2 = tk.Toplevel(parent)  # Ventana secundaria ligada a la principal
+    ventana2 = tk.Toplevel(parent)
     ventana2.title('Análisis de datos en todas las estaciones')
-    ventana2.geometry("1600x900")  # Ajustar el tamaño de la ventana
+    ventana2.geometry("1600x900")
 
-    # Configuración de fuentes
     fuente_titulo = ("Arial", 20, "bold")
     fuente_texto = ("Arial", 16, "bold")
     fuente_descripcion = ("Arial", 14)
 
-    # Frame para los textos en el lado derecho
     frame_derecho2 = ttk.Frame(ventana2)
     frame_derecho2.pack(side="right", fill="both", expand=True, padx=10, pady=10)
 
-    # Título
     titulo = ttk.Label(frame_derecho2, text="En esta ventana puede revisar el gráfico de los valores diarios promedio para todos los contaminantes en todas las estaciones en la base de datos, además también puede visualizar las primeras 40 filas de los datos utilizados en este análisis, usando los botones para mostrar el gráfico y los datos respectivamente.", font=fuente_descripcion, wraplength=1100, justify="left")
     titulo.pack(pady=10)
 
-    # Crear área para el gráfico
     frame_grafico = ttk.Frame(frame_derecho2)
     frame_grafico.pack(pady=20, fill="both", expand=True)
 
-    # Frame para los botones en el lado izquierdo
     frame_izquierdo = ttk.Frame(ventana2)
-    frame_izquierdo.place(x=10, y=100, width=200, height=500)  # Posicionamiento inicial
-    frame_izquierdo.pack_propagate(False)  # Evitar que el frame cambie de tamaño automáticamente
+    frame_izquierdo.place(x=10, y=100, width=200, height=500)
+    frame_izquierdo.pack_propagate(False)
 
-    # Ocultar frame izquierdo por defecto
     frame_izquierdo.place_forget()
-
-    # # Botones
-    # frame_botones = ttk.Frame(ventana2)
-    # frame_botones.pack(pady=10)
 
     botones = [
         ("Mostrar gráfico"),
@@ -114,16 +93,14 @@ def ventana2(parent):
         ("Cancelar")
     ]
 
-    # Función para manejar eventos
     def manejar_evento2(evento):
         if evento == "Cancelar":
-            ventana2.destroy()  # Usar `parent` en lugar de `ventana`
+            ventana2.destroy()
         elif evento == "Mostrar gráfico":
             all(frame2, frame_grafico)
         elif evento == "Mostrar datos":
-            mostrar_dataframe(frame2, frame_grafico)  # Llama a la función para mostrar el DataFrame
+            mostrar_dataframe(frame2, frame_grafico)
 
-    # Crear botones y asociar manejar_evento2
     for texto in botones:
         boton = ttk.Button(
             frame_izquierdo,
@@ -134,56 +111,47 @@ def ventana2(parent):
         boton.pack(pady=10) 
 
     def toggle_menu():
-        if frame_izquierdo.winfo_ismapped():  # Si el frame está visible
-            frame_izquierdo.place_forget()  # Ocultar el frame
+        if frame_izquierdo.winfo_ismapped():
+            frame_izquierdo.place_forget()
         else:
-            frame_izquierdo.place(x=10, y=60, width=200, height=160)  # Mostrar el frame
+            frame_izquierdo.place(x=10, y=60, width=200, height=160)
 
     boton_menu = ttk.Button(ventana2, text="Menú", command=toggle_menu)
-    boton_menu.place(x=10, y=10)  # Posicionar en la esquina superior izquierda
+    boton_menu.place(x=10, y=10)
 
-    # Texto para salir
     texto_cancelar = ttk.Label(
-        frame_derecho2,  # Cambiado a ventana2
+        frame_derecho2,
         text="\nPresione Cancelar para salir del programa",
         font=fuente_descripcion,
     )
     texto_cancelar.pack(pady=10)
 
-    # Aplicar el tema después de inicializar ventana2
     windows_theme_dinamico(ventana2)
     apply_theme_to_titlebar_dinamico(ventana2)
 
-    # Asegurar que ventana2 se cierre adecuadamente
     ventana2.protocol("WM_DELETE_WINDOW", ventana2.destroy)
 
 def ventana3(parent):
-    ventana3 = tk.Toplevel(parent)  # Ventana secundaria ligada a la principal
+    ventana3 = tk.Toplevel(parent)
     ventana3.title('Análisis de datos en todas las estaciones')
-    ventana3.geometry("1600x900")  # Ajustar el tamaño de la ventana
+    ventana3.geometry("1600x900")
 
-    # Configuración de fuentes
     fuente_titulo = ("Arial", 20, "bold")
     fuente_texto = ("Arial", 16, "bold")
     fuente_descripcion = ("Arial", 14)
 
-    # Título
     titulo = ttk.Label(ventana3, text="Seleccione una estación para analizar los datos diarios promedio de los contaminantes. Use los botones para mostrar el gráfico o los datos correspondientes.", font=fuente_descripcion, wraplength=1100, justify="left")
     titulo.pack(pady=10)
 
-    # Lista de IDs de estaciones únicas
-    id_estaciones = sorted(frame2['codigoSerial'].unique())  # Extraer IDs únicas
-    estacion_seleccionada = tk.StringVar(value=id_estaciones[0])  # Valor por defecto
+    id_estaciones = sorted(frame2['codigoSerial'].unique())
+    estacion_seleccionada = tk.StringVar(value=id_estaciones[0])
 
-    # Menú desplegable para seleccionar estación
     combobox = ttk.Combobox(ventana3, textvariable=estacion_seleccionada, values=id_estaciones, state="readonly", font=fuente_texto)
     combobox.pack(pady=10)
 
-    # Crear área para el gráfico y los datos
     frame_contenido = ttk.Frame(ventana3)
     frame_contenido.pack(pady=20, fill="both", expand=True)
 
-    # Botones
     frame_botones = ttk.Frame(ventana3)
     frame_botones.pack(pady=10)
 
@@ -194,20 +162,17 @@ def ventana3(parent):
     ]
 
     def manejar_evento3(evento):
-        id_estacion = estacion_seleccionada.get()  # ID seleccionada (valor único del combobox)
+        id_estacion = estacion_seleccionada.get()
 
         if evento == "Cancelar":
             ventana3.destroy()
         elif evento == "Mostrar gráfico":
-            # Filtrar el DataFrame por la estación seleccionada y generar gráfico
-            frame_filtrado = frame2[frame2['codigoSerial'] == int(id_estacion)]  # Usar el valor seleccionado
+            frame_filtrado = frame2[frame2['codigoSerial'] == int(id_estacion)]
             mostrar_grafico_est(frame_filtrado, frame_contenido)
         elif evento == "Mostrar datos":
-            # Filtrar el DataFrame por la estación seleccionada y mostrar tabla
-            frame_filtrado = frame2[frame2['codigoSerial'] == int(id_estacion)]  # Usar el valor seleccionado
+            frame_filtrado = frame2[frame2['codigoSerial'] == int(id_estacion)]
             mostrar_dataframe_est(frame_filtrado, frame_contenido)
 
-    # Crear botones y asociar manejar_evento3
     for texto in botones:
         boton = ttk.Button(
             frame_botones,
@@ -217,7 +182,6 @@ def ventana3(parent):
         )
         boton.pack(side="left", padx=5)
 
-    # Texto para salir
     texto_cancelar = ttk.Label(
         ventana3,
         text="Presione Cancelar para salir de la ventana",
@@ -236,25 +200,20 @@ def ventana5():
     new_window.title('Gráfica de contaminantes en todas lass estaciones')
 
 def ventana_principal():
-    # Crear la ventana principal
     ventana = tk.Tk()
     ventana.title("Análisis calidad del aire de Medellín")
-    ventana.geometry("1126x634")  # Ajustar el tamaño de la ventana
+    ventana.geometry("1126x634")
 
-    # Configuración de fuentes
     fuente_titulo = ("Arial", 20, "bold")
     fuente_texto = ("Arial", 16, "bold")
     fuente_descripcion = ("Arial", 14)
 
-    # Frame para los textos en el lado derecho
     frame_derecho = ttk.Frame(ventana)
     frame_derecho.pack(side="right", fill="both", expand=True, padx=10, pady=10)
 
-    # Título
     titulo = ttk.Label(frame_derecho, text="Calidad del aire", font=fuente_titulo)
     titulo.pack(pady=10)
 
-    # Nombres
     nombres = ttk.Label(
         frame_derecho,
         text="Juan Diego Suárez Agualimpia \nIngeniero Químico \nUniversidad Nacional de Colombia",
@@ -264,16 +223,15 @@ def ventana_principal():
 
     titulo_desc = ttk.Label(
         frame_derecho,
-        text="Reducción de los contaminantes del aire a través de purificadores.",
+        text="Análsis de los datos provenientes del SIATA",
         font=fuente_texto,
     )
     titulo_desc.pack(pady=10)
 
-    # Descripción
     descripcion = ttk.Label(
         frame_derecho,
         text=(
-            "Los purificadores de aire han sido desarrollados a medida que la tecnología y la contaminación ha avanzado; con el fin de reducir los compuestos químicos que contaminan y están presentes en el aire se realizan mediciones y, dados los valores obtenidos, se puede saber qué índice de contaminación está presente en tiempo real y qué tipo de alternativa de purificación se puede utilizar para combatirlo.\nEn los dataframes pueden aparecer valores de -9999 o excesivamente altos, para algunos de los contaminantes, indicando que no se hizo la medición en ese tiempo, o que se trata de una medición errada, estos datos se filtran de manera automática al realizar las gráficas"
+            "El Sistema de Alerta Temprana de Medellín y el Valle de Aburrá (SIATA) es un sistema que busca prevenir y mitigar los efectos de la contaminación del aire en la región. Este análisis se centra en los datos recopilados por el SIATA, que incluyen información sobre la calidad del aire, las condiciones meteorológicas y otros factores relevantes. El objetivo es proporcionar una visión general de la calidad del aire en Medellín y su evolución a lo largo del tiempo."
         ),
         font=fuente_descripcion,
         wraplength=700,
@@ -281,12 +239,10 @@ def ventana_principal():
     )
     descripcion.pack(pady=20)
 
-    # Frame para los botones en el lado izquierdo
     frame_izquierdo = ttk.Frame(ventana)
-    frame_izquierdo.place(x=10, y=100, width=200, height=500)  # Posicionamiento inicial
-    frame_izquierdo.pack_propagate(False)  # Evitar que el frame cambie de tamaño automáticamente
+    frame_izquierdo.place(x=10, y=100, width=200, height=500)
+    frame_izquierdo.pack_propagate(False)
 
-    # Ocultar frame izquierdo por defecto
     frame_izquierdo.place_forget()
 
     botones = [
@@ -305,23 +261,22 @@ def ventana_principal():
             width=20,
             command=lambda t=texto: manejar_evento(t),
         )
-        boton.pack(pady=10)  # Centrar verticalmente los botones con espacio
+        boton.pack(pady=10)
 
-    # Botón Menú en la esquina superior izquierda
     def toggle_menu():
-        if frame_izquierdo.winfo_ismapped():  # Si el frame está visible
-            frame_izquierdo.place_forget()  # Ocultar el frame
+        if frame_izquierdo.winfo_ismapped():
+            frame_izquierdo.place_forget()
         else:
-            frame_izquierdo.place(x=10, y=140, width=200, height=500)  # Mostrar el frame
+            frame_izquierdo.place(x=10, y=140, width=200, height=500)
 
     boton_menu = ttk.Button(ventana, text="Menú", command=toggle_menu)
-    boton_menu.place(x=10, y=10)  # Posicionar en la esquina superior izquierda
+    boton_menu.place(x=10, y=10)
 
     def manejar_evento(evento):
         if evento == "Cancelar":
             ventana.destroy()
         elif evento == "Todas las estaciones":
-            ventana2(ventana)  # Pasar la ventana principal como padre
+            ventana2(ventana)
         elif evento == "Análisis por estación":
             ventana3(ventana)
         elif evento == "Índice parcial horario":
@@ -329,12 +284,9 @@ def ventana_principal():
         elif evento == "Índice global horario":
             ventana5()
 
-    # sv_ttk.set_theme(darkdetect.theme())
     windows_theme_dinamico(ventana)
-    # pywinstyles.apply_style(ventana,'acrylic')
     apply_theme_to_titlebar_dinamico(ventana)
 
-    # Ejecutar el bucle de la ventana
     ventana.mainloop()
 
 ventana_principal()
