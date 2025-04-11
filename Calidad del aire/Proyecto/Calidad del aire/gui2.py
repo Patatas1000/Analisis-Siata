@@ -84,17 +84,29 @@ def ventana2(parent):
     fuente_texto = ("Arial", 16, "bold")
     fuente_descripcion = ("Arial", 14)
 
+    # Frame para los textos en el lado derecho
+    frame_derecho2 = ttk.Frame(ventana2)
+    frame_derecho2.pack(side="right", fill="both", expand=True, padx=10, pady=10)
+
     # Título
-    titulo = ttk.Label(ventana2, text="En esta ventana puede revisar el gráfico de los valores diarios promedio para todos los contaminantes en todas las estaciones en la base de datos, además también puede visualizar las primeras 40 filas de los datos utilizados en este análisis, usando los botones para mostrar el gráfico y los datos respectivamente.", font=fuente_descripcion, wraplength=1100, justify="left")
+    titulo = ttk.Label(frame_derecho2, text="En esta ventana puede revisar el gráfico de los valores diarios promedio para todos los contaminantes en todas las estaciones en la base de datos, además también puede visualizar las primeras 40 filas de los datos utilizados en este análisis, usando los botones para mostrar el gráfico y los datos respectivamente.", font=fuente_descripcion, wraplength=1100, justify="left")
     titulo.pack(pady=10)
 
     # Crear área para el gráfico
-    frame_grafico = ttk.Frame(ventana2)
+    frame_grafico = ttk.Frame(frame_derecho2)
     frame_grafico.pack(pady=20, fill="both", expand=True)
 
-    # Botones
-    frame_botones = ttk.Frame(ventana2)
-    frame_botones.pack(pady=10)
+    # Frame para los botones en el lado izquierdo
+    frame_izquierdo = ttk.Frame(ventana2)
+    frame_izquierdo.place(x=10, y=100, width=200, height=500)  # Posicionamiento inicial
+    frame_izquierdo.pack_propagate(False)  # Evitar que el frame cambie de tamaño automáticamente
+
+    # Ocultar frame izquierdo por defecto
+    frame_izquierdo.place_forget()
+
+    # # Botones
+    # frame_botones = ttk.Frame(ventana2)
+    # frame_botones.pack(pady=10)
 
     botones = [
         ("Mostrar gráfico"),
@@ -114,16 +126,25 @@ def ventana2(parent):
     # Crear botones y asociar manejar_evento2
     for texto in botones:
         boton = ttk.Button(
-            frame_botones,
+            frame_izquierdo,
             text=texto,
             width=20,
             command=lambda t=texto: manejar_evento2(t),
         )
-        boton.pack(side="left", padx=5)
+        boton.pack(pady=10) 
+
+    def toggle_menu():
+        if frame_izquierdo.winfo_ismapped():  # Si el frame está visible
+            frame_izquierdo.place_forget()  # Ocultar el frame
+        else:
+            frame_izquierdo.place(x=10, y=60, width=200, height=150)  # Mostrar el frame
+
+    boton_menu = ttk.Button(ventana2, text="Menú", command=toggle_menu)
+    boton_menu.place(x=10, y=10)  # Posicionar en la esquina superior izquierda
 
     # Texto para salir
     texto_cancelar = ttk.Label(
-        ventana2,  # Cambiado a ventana2
+        frame_derecho2,  # Cambiado a ventana2
         text="\nPresione Cancelar para salir del programa",
         font=fuente_descripcion,
     )
@@ -297,9 +318,6 @@ def ventana_principal():
     boton_menu = ttk.Button(ventana, text="Menú", command=toggle_menu)
     boton_menu.place(x=10, y=10)  # Posicionar en la esquina superior izquierda
 
-    # def manejar_evento(evento):
-    #     if evento == "Cancelar":
-    #         ventana.destroy()
     def manejar_evento(evento):
         if evento == "Cancelar":
             ventana.destroy()
