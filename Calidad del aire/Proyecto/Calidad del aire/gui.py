@@ -54,25 +54,19 @@ def ventana2(parent):
     frame_botones.pack(pady=10)
 
     botones = [
-        ("Gráfico de promedio diario"),
-        ("Análisis por estación"),
-        ("Índice parcial horario"),
-        ("Índice global horario"),
-        ("Cancelar")
+        ("Gráfico de promedio\ndiario"),
+        ("Mostrar parte del\ndataframe"),
+        ("Cancelar\n")
     ]
 
     # Función para manejar eventos
     def manejar_evento2(evento):
-        if evento == "Cancelar":
+        if evento == "Cancelar\n":
             ventana2.destroy()  # Usar `parent` en lugar de `ventana`
-        elif evento == "Gráfico de promedio diario":
+        elif evento == "Gráfico de promedio\ndiario":
             all(frame2)  # Llamar a la función `all` con frame2
-        elif evento == "Análisis por estación":
+        elif evento == "Mostrar parte del\ndataframe":
             ventana3()
-        elif evento == "Índice parcial horario":
-            ventana4()
-        elif evento == "Índice global horario":
-            ventana5()
 
     # Crear botones y asociar manejar_evento2
     for texto in botones:
