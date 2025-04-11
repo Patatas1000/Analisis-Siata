@@ -223,7 +223,7 @@ def ventana_principal():
 
     titulo_desc = ttk.Label(
         frame_derecho,
-        text="Reducción de los contaminantes del aire a través de purificadores.",
+        text="Análsis de los datos provenientes del SIATA",
         font=fuente_texto,
     )
     titulo_desc.pack(pady=10)
@@ -231,7 +231,7 @@ def ventana_principal():
     descripcion = ttk.Label(
         frame_derecho,
         text=(
-            "Los purificadores de aire han sido desarrollados a medida que la tecnología y la contaminación ha avanzado; con el fin de reducir los compuestos químicos que contaminan y están presentes en el aire se realizan mediciones y, dados los valores obtenidos, se puede saber qué índice de contaminación está presente en tiempo real y qué tipo de alternativa de purificación se puede utilizar para combatirlo.\nEn los dataframes pueden aparecer valores de -9999 o excesivamente altos, para algunos de los contaminantes, indicando que no se hizo la medición en ese tiempo, o que se trata de una medición errada, estos datos se filtran de manera automática al realizar las gráficas"
+            "El Sistema de Alerta Temprana de Medellín y el Valle de Aburrá (SIATA) es un sistema que busca prevenir y mitigar los efectos de la contaminación del aire en la región. Este análisis se centra en los datos recopilados por el SIATA, que incluyen información sobre la calidad del aire, las condiciones meteorológicas y otros factores relevantes. El objetivo es proporcionar una visión general de la calidad del aire en Medellín y su evolución a lo largo del tiempo."
         ),
         font=fuente_descripcion,
         wraplength=700,

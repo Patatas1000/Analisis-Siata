@@ -6,5 +6,5 @@ Este programa permite una fácil visualización de la información, además dete
 
 Para facilitar la revisión de la información de hace uso de una interfaz diseñada que permite interactuar fácilmente con el programa y cada uno de los análisis que puede hacer, iniciando por la ventana principal.
 
-![Ventana Principal](https://github.com/Patatas1000/Analisis-Siata/blob/Patatas1000-patch-1/Calidad%20del%20aire/Proyecto/Images/VentanaPrincipal.png)
+![Ventana Principal](https://github.com/Patatas1000/Analisis-Siata/blob/Patatas1000-patch-1/Calidad%20del%20aire/Proyecto/Images/MainWindow.png)
 
