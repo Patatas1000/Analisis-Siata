@@ -137,7 +137,7 @@ def ventana2(parent):
         if frame_izquierdo.winfo_ismapped():  # Si el frame está visible
             frame_izquierdo.place_forget()  # Ocultar el frame
         else:
-            frame_izquierdo.place(x=10, y=60, width=200, height=150)  # Mostrar el frame
+            frame_izquierdo.place(x=10, y=60, width=200, height=160)  # Mostrar el frame
 
     boton_menu = ttk.Button(ventana2, text="Menú", command=toggle_menu)
     boton_menu.place(x=10, y=10)  # Posicionar en la esquina superior izquierda
