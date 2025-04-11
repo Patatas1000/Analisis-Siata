@@ -5,11 +5,12 @@ import regex as rg
 import matplotlib.pyplot as plt
 
 sg.theme('DarkBlue')   # Window theme
+ruta= r'Calidad del aire\Proyecto\Archivos varios\UdeA1.gif'
 
 def ventana1():
     layout = [  [sg.Text(text='Universidad de Antioquia', font=('Arial', 20,'bold'))],
                 [sg.Text(text='Ximena Londoño \nNicoll Fajardo \nLaura Jimenez',font=('Arial', 16,'bold'))],
-                [sg.Text(text='Reducción de los contaminantes del aire a través de purificadores.\n\nLos purificadores de aire han sido desarrollados a medida que la tecnología y la contaminación ha avanzado; con el fin de reducir los compuestos químicos que contaminan y están presentes en el aire se realizan mediciones y dados los valores obtenidos se puede saber que índice de contaminación está presente en tiempo real y qué tipo de alternativa de purificación se puede utilizar para combatirlo.', size = (60,8), font=('Arial', 14), pad = ((0,0),(0,0))),sg.Image(filename = 'UdeA1.gif', pad = ((0,0),(0,0)), key = "icon_image")],
+                [sg.Text(text='Reducción de los contaminantes del aire a través de purificadores.\n\nLos purificadores de aire han sido desarrollados a medida que la tecnología y la contaminación ha avanzado; con el fin de reducir los compuestos químicos que contaminan y están presentes en el aire se realizan mediciones y dados los valores obtenidos se puede saber que índice de contaminación está presente en tiempo real y qué tipo de alternativa de purificación se puede utilizar para combatirlo.', size = (60,8), font=('Arial', 14), pad = ((0,0),(0,0))),sg.Image(filename = ruta, pad = ((0,0),(0,0)), key = "icon_image")],
                 [sg.Text(text='\nPresione una de las opciones que se muestra a continuacin', font=('Arial', 14))],
                 [sg.Text(text='\nPresione Cancelar para salir del programa', font=('Arial', 14))],
                 [sg.Button(button_text='Calidad del aire',font=('Arial',14),button_color=('LightCyan','DarkSlateGrey'),mouseover_colors=('DarkSlateGrey','LightCyan'),border_width=(3)),sg.Button(button_text='Valores límites diarios',font=('Arial',14),button_color=('LightCyan','DarkSlateGrey'),mouseover_colors=('DarkSlateGrey','LightCyan'),border_width=(3)),sg.Button(button_text='Índice parcial horario',font=('Arial',14),button_color=('LightCyan','DarkSlateGrey'),mouseover_colors=('DarkSlateGrey','LightCyan'),border_width=(3)),sg.Button(button_text='Índice global horario',font=('Arial',14),button_color=('LightCyan','DarkSlateGrey'),mouseover_colors=('DarkSlateGrey','LightCyan'),border_width=(3)),sg.Button(button_text='Cancelar',font=('Arial',14),button_color=('LightCyan','Red'),mouseover_colors=('Red','LightCyan'),border_width=(3))]]  # identify the multiline via key option

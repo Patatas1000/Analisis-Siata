@@ -281,6 +281,7 @@ def ventana_principal():
     botones = [
         ("Todas las estaciones"),
         ("Análisis por estación"),
+        ('Valores límites diarios'),
         ("Índice parcial horario"),
         ("Índice global horario"),
         ("Cancelar")
