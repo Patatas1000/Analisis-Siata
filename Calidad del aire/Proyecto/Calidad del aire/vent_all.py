@@ -10,7 +10,7 @@ from all_stations import mostrar_dataframe
 from tema import apply_theme_to_titlebar_dinamico
 from tema import windows_theme_dinamico
 
-def ventana2(parent):
+def ventana2(parent,frame2):
     ventana2 = tk.Toplevel(parent)
     ventana2.title('Análisis de datos en todas las estaciones')
     ventana2.geometry("1600x900")
