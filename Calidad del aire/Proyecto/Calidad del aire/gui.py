@@ -20,7 +20,6 @@ import os
 path=r'Calidad del aire\Proyecto\Bases'
 
 frame2=data(path)
-# id_estaciones = [6, 12, 28, 37, 38, 40, 41, 43, 46, 69, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 90, 92, 94, 100, 101, 103, 104, 106, 107]
 
 def apply_theme_to_titlebar_dinamico(ventana):
     # Almacenar ID del timer de after para cancelarlo posteriormente
