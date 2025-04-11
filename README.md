@@ -21,3 +21,4 @@ Además, también permite realizar el análisis para cada una de las estaciones 
 ![Conjunto de datos para una estación particular del SIATA](https://github.com/Patatas1000/Analisis-Siata/blob/Patatas1000-patch-1/Calidad%20del%20aire/Proyecto/Images/DataEst.png)
 
 Se pretende añadir más funciones a futuro, este es un trabajo en progreso.
+
