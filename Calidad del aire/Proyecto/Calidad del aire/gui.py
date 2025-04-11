@@ -78,7 +78,7 @@ def windows_theme_dinamico(ventana):
 def ventana2(parent):
     ventana2 = tk.Toplevel(parent)  # Ventana secundaria ligada a la principal
     ventana2.title('Análisis de datos en todas las estaciones')
-    ventana2.geometry("1200x800")  # Ajustar el tamaño de la ventana
+    ventana2.geometry("1600x900")  # Ajustar el tamaño de la ventana
 
     # Configuración de fuentes
     fuente_titulo = ("Arial", 20, "bold")
@@ -140,7 +140,7 @@ def ventana2(parent):
 def ventana3(parent):
     ventana3 = tk.Toplevel(parent)  # Ventana secundaria ligada a la principal
     ventana3.title('Análisis de datos en todas las estaciones')
-    ventana3.geometry("1200x800")  # Ajustar el tamaño de la ventana
+    ventana3.geometry("1600x900")  # Ajustar el tamaño de la ventana
 
     # Configuración de fuentes
     fuente_titulo = ("Arial", 20, "bold")
