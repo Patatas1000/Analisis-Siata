@@ -6,7 +6,7 @@ import glob
 import os
 
 # path=r'Calidad del aire\Proyecto\Datos'
-# path=r'Calidad del aire\Proyecto\Bases'
+path=r'Calidad del aire\Proyecto\Bases'
 
 def data(path):
 

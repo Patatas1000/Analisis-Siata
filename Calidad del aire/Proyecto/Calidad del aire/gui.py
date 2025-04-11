@@ -8,6 +8,8 @@ import pywinstyles, sys
 from database_info import data
 from all_stations import all
 from all_stations import mostrar_dataframe
+from per_station import mostrar_grafico_est
+from per_station import mostrar_dataframe_est
 import numpy as np
 import pandas as pd
 import regex as rg
@@ -18,6 +20,7 @@ import os
 path=r'Calidad del aire\Proyecto\Bases'
 
 frame2=data(path)
+# id_estaciones = [6, 12, 28, 37, 38, 40, 41, 43, 46, 69, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 90, 92, 94, 100, 101, 103, 104, 106, 107]
 
 def apply_theme_to_titlebar_dinamico(ventana):
     # Almacenar ID del timer de after para cancelarlo posteriormente
@@ -134,9 +137,73 @@ def ventana2(parent):
     # Asegurar que ventana2 se cierre adecuadamente
     ventana2.protocol("WM_DELETE_WINDOW", ventana2.destroy)
 
-def ventana3():
-    new_window = tk.Toplevel()
-    new_window.title('Gráfica de contaminantes en todas lass estaciones')
+def ventana3(parent):
+    ventana3 = tk.Toplevel(parent)  # Ventana secundaria ligada a la principal
+    ventana3.title('Análisis de datos en todas las estaciones')
+    ventana3.geometry("1200x800")  # Ajustar el tamaño de la ventana
+
+    # Configuración de fuentes
+    fuente_titulo = ("Arial", 20, "bold")
+    fuente_texto = ("Arial", 16, "bold")
+    fuente_descripcion = ("Arial", 14)
+
+    # Título
+    titulo = ttk.Label(ventana3, text="Seleccione una estación para analizar los datos diarios promedio de los contaminantes. Use los botones para mostrar el gráfico o los datos correspondientes.", font=fuente_descripcion, wraplength=1100, justify="left")
+    titulo.pack(pady=10)
+
+    # Lista de IDs de estaciones únicas
+    id_estaciones = sorted(frame2['codigoSerial'].unique())  # Extraer IDs únicas
+    estacion_seleccionada = tk.StringVar(value=id_estaciones[0])  # Valor por defecto
+
+    # Menú desplegable para seleccionar estación
+    combobox = ttk.Combobox(ventana3, textvariable=estacion_seleccionada, values=id_estaciones, state="readonly", font=fuente_texto)
+    combobox.pack(pady=10)
+
+    # Crear área para el gráfico y los datos
+    frame_contenido = ttk.Frame(ventana3)
+    frame_contenido.pack(pady=20, fill="both", expand=True)
+
+    # Botones
+    frame_botones = ttk.Frame(ventana3)
+    frame_botones.pack(pady=10)
+
+    botones = [
+        ("Mostrar gráfico"),
+        ("Mostrar datos"),
+        ("Cancelar")
+    ]
+
+    def manejar_evento3(evento):
+        id_estacion = estacion_seleccionada.get()  # ID seleccionada (valor único del combobox)
+
+        if evento == "Cancelar":
+            ventana3.destroy()
+        elif evento == "Mostrar gráfico":
+            # Filtrar el DataFrame por la estación seleccionada y generar gráfico
+            frame_filtrado = frame2[frame2['codigoSerial'] == int(id_estacion)]  # Usar el valor seleccionado
+            mostrar_grafico_est(frame_filtrado, frame_contenido)
+        elif evento == "Mostrar datos":
+            # Filtrar el DataFrame por la estación seleccionada y mostrar tabla
+            frame_filtrado = frame2[frame2['codigoSerial'] == int(id_estacion)]  # Usar el valor seleccionado
+            mostrar_dataframe_est(frame_filtrado, frame_contenido)
+
+    # Crear botones y asociar manejar_evento3
+    for texto in botones:
+        boton = ttk.Button(
+            frame_botones,
+            text=texto,
+            width=20,
+            command=lambda t=texto: manejar_evento3(t),
+        )
+        boton.pack(side="left", padx=5)
+
+    # Texto para salir
+    texto_cancelar = ttk.Label(
+        ventana3,
+        text="Presione Cancelar para salir de la ventana",
+        font=fuente_descripcion,
+    )
+    texto_cancelar.pack(pady=10)
 
 def ventana4():
     new_window = tk.Toplevel()
@@ -243,7 +310,7 @@ def ventana_principal():
         elif evento == "Todas las estaciones":
             ventana2(ventana)  # Pasar la ventana principal como padre
         elif evento == "Análisis por estación":
-            ventana3()
+            ventana3(ventana)
         elif evento == "Índice parcial horario":
             ventana4()
         elif evento == "Índice global horario":
