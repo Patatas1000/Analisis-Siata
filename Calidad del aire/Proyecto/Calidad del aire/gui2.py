@@ -224,6 +224,8 @@ def ventana3(parent):
         font=fuente_descripcion,
     )
     texto_cancelar.pack(pady=10)
+    windows_theme_dinamico(ventana3)
+    apply_theme_to_titlebar_dinamico(ventana3)
 
 def ventana4():
     new_window = tk.Toplevel()
