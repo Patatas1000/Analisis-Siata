@@ -144,7 +144,7 @@ def mostrar_dataframe(frame2, frame_grafico):
             tree.column(column, width=100, anchor="center")
 
         # Insertar las primeras 20 filas del DataFrame, incluyendo los índices
-        for index, row in frame2.head(30).iterrows():
+        for index, row in frame2.head(40).iterrows():
             tree.insert("", "end", values=[index] + list(row))
 
         # Empaquetar el Treeview en el frame_grafico
