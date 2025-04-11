@@ -212,31 +212,38 @@ def ventana5():
     new_window = tk.Toplevel()
     new_window.title('Gráfica de contaminantes en todas lass estaciones')
 
+import tkinter as tk
+from tkinter import ttk
+
 def ventana_principal():
     # Crear la ventana principal
     ventana = tk.Tk()
     ventana.title("Análisis calidad del aire de Medellín")
-    ventana.geometry("1200x700")  # Ajustar el tamaño de la ventana
+    ventana.geometry("1126x634")  # Ajustar el tamaño de la ventana
 
     # Configuración de fuentes
     fuente_titulo = ("Arial", 20, "bold")
     fuente_texto = ("Arial", 16, "bold")
     fuente_descripcion = ("Arial", 14)
 
+    # Frame para los textos en el lado derecho
+    frame_derecho = ttk.Frame(ventana)
+    frame_derecho.pack(side="right", fill="both", expand=True, padx=10, pady=10)
+
     # Título
-    titulo = ttk.Label(ventana, text="Calidad del aire", font=fuente_titulo)
+    titulo = ttk.Label(frame_derecho, text="Calidad del aire", font=fuente_titulo)
     titulo.pack(pady=10)
 
     # Nombres
     nombres = ttk.Label(
-        ventana,
+        frame_derecho,
         text="Juan Diego Suárez Agualimpia \nIngeniero Químico \nUniversidad Nacional de Colombia",
         font=fuente_texto,
     )
     nombres.pack(pady=10)
 
     titulo_desc = ttk.Label(
-        ventana,
+        frame_derecho,
         text="Reducción de los contaminantes del aire a través de purificadores.",
         font=fuente_texto,
     )
@@ -244,86 +251,55 @@ def ventana_principal():
 
     # Descripción
     descripcion = ttk.Label(
-        ventana,
+        frame_derecho,
         text=(
-            "Los purificadores de aire han sido desarrollados a medida que la tecnología y la contaminación ha avanzado; con el fin de reducir los compuestos químicos que contaminan y están presentes en el aire se realizan mediciones y, dados los valores obtenidos, se puede saber qué índice de contaminación está presente en tiempo real y qué tipo de alternativa de purificación se puede utilizar para combatirlo.\nEn lso dataframes pueden aparecer valores de -9999 o excesivamente altos, para algunos de los contaminantes, indicando que se no se hizo la medición en ese tiempo, o que se trata de una medición errada, estos datos se filtran de manera automática, al realizar las gráficas"
+            "Los purificadores de aire han sido desarrollados a medida que la tecnología y la contaminación ha avanzado; con el fin de reducir los compuestos químicos que contaminan y están presentes en el aire se realizan mediciones y, dados los valores obtenidos, se puede saber qué índice de contaminación está presente en tiempo real y qué tipo de alternativa de purificación se puede utilizar para combatirlo.\nEn los dataframes pueden aparecer valores de -9999 o excesivamente altos, para algunos de los contaminantes, indicando que no se hizo la medición en ese tiempo, o que se trata de una medición errada, estos datos se filtran de manera automática al realizar las gráficas"
         ),
         font=fuente_descripcion,
-        wraplength=1100,  # Ajustar el texto
+        wraplength=700,
         justify="left",
     )
     descripcion.pack(pady=20)
 
-    # # Imagen
-    # ruta_imagen = r"Calidad del aire\Proyecto\UdeA1.gif"  # Cambia esta ruta a tu archivo
-    # try:
-    #     imagen = PhotoImage(file=ruta_imagen)
-    #     etiqueta_imagen = tk.Label(ventana, image=imagen)
-    #     etiqueta_imagen.pack(pady=10)
-    # except tk.TclError:
-    #     etiqueta_imagen = tk.Label(
-    #         ventana, text="No se pudo cargar la imagen.", font=fuente_descripcion
-    #     )
-    #     etiqueta_imagen.pack(pady=10)
+    # Frame para los botones en el lado izquierdo
+    frame_izquierdo = ttk.Frame(ventana)
+    frame_izquierdo.place(x=10, y=100, width=200, height=500)  # Posicionamiento inicial
+    frame_izquierdo.pack_propagate(False)  # Evitar que el frame cambie de tamaño automáticamente
 
-    # Indicaciones
-    texto_opciones = ttk.Label(
-        ventana,
-        text="\nPresione una de las opciones que se muestra a continuación",
-        font=fuente_descripcion,
-    )
-    texto_opciones.pack(pady=10)
-    # # Botones
-    # frame_botones = ttk.Frame(ventana)
-    # frame_botones.pack(side="left", anchor="n", padx=10, pady=10)  # Colocar el marco al lado izquierdo y alineado hacia arriba
-
-    # botones = [
-    #     ("Todas las estaciones"),
-    #     ("Análisis por estación"),
-    #     ("Valores límites diarios"),
-    #     ("Índice parcial horario"),
-    #     ("Índice global horario"),
-    #     ("Cancelar")
-    # ]
-
-    # for texto in botones:
-    #     boton = ttk.Button(
-    #         frame_botones,
-    #         text=texto,
-    #         width=20,
-    #         command=lambda t=texto: manejar_evento(t),
-    #     )
-    #     boton.pack(pady=5)  # Añadir espacio vertical entre los botones
-    # Botones
-    frame_botones = ttk.Frame(ventana)
-    frame_botones.pack(pady=10)
+    # Ocultar frame izquierdo por defecto
+    frame_izquierdo.place_forget()
 
     botones = [
-        ("Todas las estaciones"),
-        ("Análisis por estación"),
-        ('Valores límites diarios'),
-        ("Índice parcial horario"),
-        ("Índice global horario"),
-        ("Cancelar")
+        "Todas las estaciones",
+        "Análisis por estación",
+        "Valores límites diarios",
+        "Índice parcial horario",
+        "Índice global horario",
+        "Cancelar",
     ]
 
     for texto in botones:
         boton = ttk.Button(
-            frame_botones,
+            frame_izquierdo,
             text=texto,
             width=20,
             command=lambda t=texto: manejar_evento(t),
         )
-        boton.pack(side="left", padx=5)
+        boton.pack(pady=10)  # Centrar verticalmente los botones con espacio
 
-    # Texto para salir
-    texto_cancelar = ttk.Label(
-        ventana,
-        text="\nPresione Cancelar para salir del programa",
-        font=fuente_descripcion,
-    )
-    texto_cancelar.pack(pady=10)
+    # Botón Menú en la esquina superior izquierda
+    def toggle_menu():
+        if frame_izquierdo.winfo_ismapped():  # Si el frame está visible
+            frame_izquierdo.place_forget()  # Ocultar el frame
+        else:
+            frame_izquierdo.place(x=10, y=140, width=200, height=500)  # Mostrar el frame
 
+    boton_menu = ttk.Button(ventana, text="Menú", command=toggle_menu)
+    boton_menu.place(x=10, y=10)  # Posicionar en la esquina superior izquierda
+
+    # def manejar_evento(evento):
+    #     if evento == "Cancelar":
+    #         ventana.destroy()
     def manejar_evento(evento):
         if evento == "Cancelar":
             ventana.destroy()
@@ -342,8 +318,6 @@ def ventana_principal():
     apply_theme_to_titlebar_dinamico(ventana)
 
     # Ejecutar el bucle de la ventana
-    # ventana.call('wm', 'attributes', '.', '-topmost', '1')
     ventana.mainloop()
-
 
 ventana_principal()
