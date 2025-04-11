@@ -8,3 +8,9 @@ Para facilitar la revisión de la información de hace uso de una interfaz dise�
 
 ![Ventana Principal](https://github.com/Patatas1000/Analisis-Siata/blob/Patatas1000-patch-1/Calidad%20del%20aire/Proyecto/Images/MainWindow.png)
 
+Permitiendo realizar análisis al conjunto de datos completo, mostrando un gráfico de los promedios diarios de todos los datos válidos para los contaminantes, y mostrando una parte del conjunto de datos luego del procesamiento inicial.
+
+![Gráfico del conjunto de datos completo](https://github.com/Patatas1000/Analisis-Siata/blob/Patatas1000-patch-1/Calidad%20del%20aire/Proyecto/Images/GraphAll.png)
+
+![Conjunto de datos](https://github.com/Patatas1000/Analisis-Siata/blob/Patatas1000-patch-1/Calidad%20del%20aire/Proyecto/Images/DataAll.png)
+
