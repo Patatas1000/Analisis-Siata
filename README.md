@@ -4,4 +4,4 @@ Este es un proyecto personal que tiene como fin usar diversas herramientas de Py
 
 Este programa permite una fácil visualización de la información, además detecta anomalías entre los datos y se encarga de eliminarlas de manera automática, viéndose reflejado en los resultados.
 
-![](\Calidad del aire\Proyecto\Images\VentanaPrincipal.png)
+![](https://github.com/Patatas1000/Analisis-Siata/blob/Patatas1000-patch-1/Calidad%20del%20aire/Proyecto/Images/VentanaPrincipal.png)
