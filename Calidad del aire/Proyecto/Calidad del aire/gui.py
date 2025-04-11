@@ -7,6 +7,7 @@ import darkdetect
 import pywinstyles, sys
 from database_info import data
 from all_stations import all
+from all_stations import mostrar_dataframe
 import numpy as np
 import pandas as pd
 import regex as rg
@@ -108,7 +109,7 @@ def ventana2(parent):
         # elif evento == "Gráfico de promedio\ndiario":
         #     all(frame2)  # Llamar a la función `all` con frame2
         elif evento == "Mostrar parte del\ndataframe":
-            ventana3()
+            mostrar_dataframe(frame2, frame_grafico)  # Llama a la función para mostrar el DataFrame
 
     # Crear botones y asociar manejar_evento2
     for texto in botones:

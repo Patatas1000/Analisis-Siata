@@ -11,6 +11,10 @@ import os
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 import darkdetect
+import tkinter as tk
+from tkinter import ttk
+import sv_ttk
+
 
 def all(frame2, frame_grafico):
     tema_actual = [None]  # Usamos una lista mutable para almacenar el tema actual
@@ -80,3 +84,82 @@ def all(frame2, frame_grafico):
 
     # Iniciar el bucle de verificación del tema del sistema
     actualizar_tema_y_grafico()
+
+def mostrar_dataframe(frame2, frame_grafico):
+    tema_actual = [None]  # Para almacenar el tema actual del sistema
+
+    def actualizar_tema():
+        # Detectar el tema actual del sistema
+        nuevo_tema = darkdetect.theme()
+
+        # Si el tema cambió, actualizar estilos
+        if tema_actual[0] != nuevo_tema:
+            tema_actual[0] = nuevo_tema
+
+            # Aplicar tema oscuro o claro al Treeview
+            estilo = ttk.Style()
+            if nuevo_tema == "Dark":
+                estilo.theme_use("clam")
+                estilo.configure(
+                    "Treeview",
+                    background="#2d2d2d",
+                    foreground="white",
+                    fieldbackground="#2d2d2d",
+                )
+                estilo.configure(
+                    "Treeview.Heading",
+                    background="#3d3d3d",
+                    foreground="white",
+                )
+            else:
+                estilo.theme_use("default")
+                estilo.configure(
+                    "Treeview",
+                    background="white",
+                    foreground="black",
+                    fieldbackground="white",
+                )
+                estilo.configure(
+                    "Treeview.Heading",
+                    background="#f0f0f0",
+                    foreground="black",
+                )
+
+    def dibujar_dataframe():
+        # Limpiar contenido previo en el frame_grafico
+        for widget in frame_grafico.winfo_children():
+            widget.destroy()
+
+        # Crear un Treeview para mostrar el DataFrame
+        tree = ttk.Treeview(frame_grafico)
+
+        # Configurar las columnas, incluyendo la columna de índices
+        tree["columns"] = ["Índice"] + list(frame2.columns)
+        tree["show"] = "headings"  # Oculta la columna fantasma inicial
+
+        # Configurar encabezados y ancho de las columnas
+        tree.heading("Índice", text="Índice")
+        tree.column("Índice", width=100, anchor="center")  # Índices centrados
+        for column in frame2.columns:
+            tree.heading(column, text=column)
+            tree.column(column, width=100, anchor="center")
+
+        # Insertar las primeras 20 filas del DataFrame, incluyendo los índices
+        for index, row in frame2.head(20).iterrows():
+            tree.insert("", "end", values=[index] + list(row))
+
+        # Empaquetar el Treeview en el frame_grafico
+        tree.pack(fill="both", expand=True)
+
+        # Llamar a la función para actualizar el estilo del tema
+        actualizar_tema()
+
+    def bucle_actualizacion():
+        actualizar_tema()  # Verificar y actualizar el estilo según el tema
+        frame_grafico.after(1000, bucle_actualizacion)  # Repetir cada 1 segundo
+
+    # Dibujar el DataFrame inicial
+    dibujar_dataframe()
+
+    # Iniciar la actualización dinámica del tema
+    bucle_actualizacion()
