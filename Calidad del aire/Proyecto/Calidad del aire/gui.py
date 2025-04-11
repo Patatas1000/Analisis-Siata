@@ -105,7 +105,7 @@ def ventana2(parent):
 
     # Función para manejar eventos
     def manejar_evento2(evento):
-        if evento == "Cancelar\n":
+        if evento == "Cancelar":
             ventana2.destroy()  # Usar `parent` en lugar de `ventana`
         elif evento == "Mostrar gráfico":
             all(frame2, frame_grafico)
