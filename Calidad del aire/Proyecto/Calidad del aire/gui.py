@@ -273,28 +273,7 @@ def ventana_principal():
         font=fuente_descripcion,
     )
     texto_opciones.pack(pady=10)
-    # # Botones
-    # frame_botones = ttk.Frame(ventana)
-    # frame_botones.pack(side="left", anchor="n", padx=10, pady=10)  # Colocar el marco al lado izquierdo y alineado hacia arriba
 
-    # botones = [
-    #     ("Todas las estaciones"),
-    #     ("Análisis por estación"),
-    #     ("Valores límites diarios"),
-    #     ("Índice parcial horario"),
-    #     ("Índice global horario"),
-    #     ("Cancelar")
-    # ]
-
-    # for texto in botones:
-    #     boton = ttk.Button(
-    #         frame_botones,
-    #         text=texto,
-    #         width=20,
-    #         command=lambda t=texto: manejar_evento(t),
-    #     )
-    #     boton.pack(pady=5)  # Añadir espacio vertical entre los botones
-    # Botones
     frame_botones = ttk.Frame(ventana)
     frame_botones.pack(pady=10)
 

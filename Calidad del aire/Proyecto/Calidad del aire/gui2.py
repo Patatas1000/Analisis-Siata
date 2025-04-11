@@ -233,9 +233,6 @@ def ventana5():
     new_window = tk.Toplevel()
     new_window.title('Gráfica de contaminantes en todas lass estaciones')
 
-import tkinter as tk
-from tkinter import ttk
-
 def ventana_principal():
     # Crear la ventana principal
     ventana = tk.Tk()
