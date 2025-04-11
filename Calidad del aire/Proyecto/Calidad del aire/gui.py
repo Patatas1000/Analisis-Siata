@@ -17,23 +17,59 @@ import os
 path=r'Calidad del aire\Proyecto\Bases'
 
 frame2=data(path)
-# all(frame2)
 
-def apply_theme_to_titlebar(ventana):
-    version = sys.getwindowsversion()
+def apply_theme_to_titlebar_dinamico(ventana):
+    # Almacenar ID del timer de after para cancelarlo posteriormente
+    timer_id = None
 
-    if version.major == 10 and version.build >= 22000:
-        # Set the title bar color to the background color on Windows 11 for better appearance
-        pywinstyles.change_header_color(ventana, "#1c1c1c" if sv_ttk.get_theme() == "dark" else "#fafafa")
-    elif version.major == 10:
-        pywinstyles.apply_style(ventana, "dark" if sv_ttk.get_theme() == "dark" else "normal")
+    def actualizar_titulo():
+        nonlocal timer_id  # Declarar la variable como no local
+        if not ventana.winfo_exists():
+            return  # No hacer nada si la ventana ha sido destruida
 
-        # A hacky way to update the title bar's color on Windows 10 (it doesn't update instantly like on Windows 11)
-        ventana.wm_attributes("-alpha", 0.99)
-        ventana.wm_attributes("-alpha", 1)
-    
-def windows_theme(ventana):
-    sv_ttk.set_theme(darkdetect.theme())
+        # Detectar el tema del sistema
+        tema_actual = darkdetect.theme().lower()
+
+        version = sys.getwindowsversion()
+        if version.major == 10 and version.build >= 22000:
+            # Cambiar el color de la barra del título en Windows 11
+            pywinstyles.change_header_color(ventana, "#1c1c1c" if tema_actual == "dark" else "#fafafa")
+        elif version.major == 10:
+            pywinstyles.apply_style(ventana, "dark" if tema_actual == "dark" else "normal")
+
+            # "Hack" para actualizar el color de la barra del título en Windows 10
+            ventana.wm_attributes("-alpha", 0.99)
+            ventana.wm_attributes("-alpha", 1)
+
+        # Programar otra verificación en 1000 ms (1 segundo)
+        timer_id = ventana.after(1000, actualizar_titulo)
+
+    def on_close():
+        nonlocal timer_id
+        if timer_id:
+            ventana.after_cancel(timer_id)  # Cancelar el timer programado
+        ventana.destroy()  # Destruir la ventana
+
+    # Configurar el protocolo de cierre de la ventana
+    ventana.protocol("WM_DELETE_WINDOW", on_close)
+
+    # Comenzar la verificación periódica
+    actualizar_titulo()
+
+def windows_theme_dinamico(ventana):
+    def actualizar_tema():
+        # Detectar el tema del sistema
+        nuevo_tema = darkdetect.theme().lower()
+
+        # Cambiar el tema de la ventana si es diferente
+        if sv_ttk.get_theme() != nuevo_tema:
+            sv_ttk.set_theme(nuevo_tema)
+
+        # Programar otra verificación en 1000 ms (1 segundo)
+        ventana.after(1000, actualizar_tema)
+
+    # Comenzar la verificación periódica
+    actualizar_tema()
 
 def ventana2(parent):
     ventana2 = tk.Toplevel(parent)  # Ventana secundaria ligada a la principal
@@ -56,8 +92,6 @@ def ventana2(parent):
     # Botones
     frame_botones = ttk.Frame(ventana2)
     frame_botones.pack(pady=10)
-
-
 
     botones = [
         ("Gráfico de promedio\ndiario"),
@@ -95,8 +129,8 @@ def ventana2(parent):
     texto_cancelar.pack(pady=10)
 
     # Aplicar el tema después de inicializar ventana2
-    windows_theme(ventana2)
-    apply_theme_to_titlebar(ventana2)
+    windows_theme_dinamico(ventana2)
+    apply_theme_to_titlebar_dinamico(ventana2)
 
     # Asegurar que ventana2 se cierre adecuadamente
     ventana2.protocol("WM_DELETE_WINDOW", ventana2.destroy)
@@ -217,9 +251,9 @@ def ventana_principal():
             ventana5()
 
     # sv_ttk.set_theme(darkdetect.theme())
-    windows_theme(ventana)
+    windows_theme_dinamico(ventana)
     # pywinstyles.apply_style(ventana,'acrylic')
-    apply_theme_to_titlebar(ventana)
+    apply_theme_to_titlebar_dinamico(ventana)
 
     # Ejecutar el bucle de la ventana
     # ventana.call('wm', 'attributes', '.', '-topmost', '1')
