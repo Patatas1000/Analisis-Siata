@@ -108,9 +108,9 @@ def ventana_principal():
             ventana3(ventana,frame2)
             ventana2(ventana,frame2)
         elif evento == "Valores límites diarios":
-            ventana4(ventana,frame2)
+            ventana4(ventana)
         elif evento == "Índice parcial y global horario":
-            ventana5()
+            ventana5(ventana)
 
     windows_theme_dinamico(ventana)
     apply_theme_to_titlebar_dinamico(ventana)

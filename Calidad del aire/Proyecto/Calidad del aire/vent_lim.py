@@ -10,6 +10,6 @@ from per_station import mostrar_dataframe_est
 from tema import apply_theme_to_titlebar_dinamico
 from tema import windows_theme_dinamico
 
-def ventana4():
+def ventana4(parent):
     new_window = tk.Toplevel()
     new_window.title('Gráfica de contaminantes en todas lass estaciones')
