@@ -13,7 +13,7 @@ from tema import windows_theme_dinamico
 def ventana2(parent,frame2):
     ventana2 = tk.Toplevel(parent)
     ventana2.title('Análisis de datos en todas las estaciones')
-    ventana2.geometry("1600x900")
+    ventana2.geometry("1200x600")
 
     fuente_titulo = ("Arial", 20, "bold")
     fuente_texto = ("Arial", 16, "bold")
@@ -22,7 +22,8 @@ def ventana2(parent,frame2):
     frame_derecho2 = ttk.Frame(ventana2)
     frame_derecho2.pack(side="right", fill="both", expand=True, padx=10, pady=10)
 
-    titulo = ttk.Label(frame_derecho2, text="En esta ventana puede revisar el gráfico de los valores diarios promedio para todos los contaminantes en todas las estaciones en la base de datos, además también puede visualizar las primeras 40 filas de los datos utilizados en este análisis, usando los botones para mostrar el gráfico y los datos respectivamente.", font=fuente_descripcion, wraplength=1100, justify="left")
+    titulo = ttk.Label(frame_derecho2, text="En esta ventana puede revisar el gráfico de los valores diarios promedio para todos los contaminantes en todas las estaciones en la base de datos, además también puede visualizar las primeras 40 filas de los datos utilizados en este análisis, usando los botones para mostrar el gráfico y los datos respectivamente.",
+                       font=fuente_descripcion, wraplength=700, justify="left")
     titulo.pack(pady=10)
 
     frame_grafico = ttk.Frame(frame_derecho2)
@@ -61,7 +62,7 @@ def ventana2(parent,frame2):
         if frame_izquierdo.winfo_ismapped():
             frame_izquierdo.place_forget()
         else:
-            frame_izquierdo.place(x=10, y=60, width=200, height=160)
+            frame_izquierdo.place(x=10, y=45, width=200, height=160)
 
     boton_menu = ttk.Button(ventana2, text="Menú", command=toggle_menu)
     boton_menu.place(x=10, y=10)

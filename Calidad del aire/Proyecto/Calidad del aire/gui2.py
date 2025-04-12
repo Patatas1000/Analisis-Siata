@@ -102,12 +102,10 @@ def ventana_principal():
     def manejar_evento(evento):
         if evento == "Cancelar":
             ventana.destroy()
-            
         elif evento == "Todas las estaciones":
             ventana2(ventana,frame2)
         elif evento == "Análisis por estación":
             ventana3(ventana,frame2)
-            ventana2(ventana,frame2)
         elif evento == "Valores límites diarios":
             ventana4(ventana)
         elif evento == "Índice parcial y global horario":

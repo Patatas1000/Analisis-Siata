@@ -13,7 +13,7 @@ from tema import windows_theme_dinamico
 def ventana3(parent,frame2):
     ventana3 = tk.Toplevel(parent)
     ventana3.title('Análisis de datos en todas las estaciones')
-    ventana3.geometry("1600x900")
+    ventana3.geometry("1200x600")
 
     fuente_titulo = ("Arial", 20, "bold")
     fuente_texto = ("Arial", 16, "bold")

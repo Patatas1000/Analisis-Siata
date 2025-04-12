@@ -15,8 +15,6 @@ import tkinter as tk
 from tkinter import ttk
 import sv_ttk
 
-
-
 def all(frame2, frame_grafico):
     tema_actual = [None]
     def actualizar_tema_y_grafico():
