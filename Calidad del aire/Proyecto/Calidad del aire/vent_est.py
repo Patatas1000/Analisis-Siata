@@ -32,8 +32,6 @@ def ventana3(parent,frame2):
     combobox = ttk.Combobox(frame_derecho, textvariable=estacion_seleccionada, values=id_estaciones, state="readonly", font=fuente_texto)
     combobox.pack(pady=10)
 
-
-
     frame_contenido = ttk.Frame(frame_derecho)
     frame_contenido.pack(pady=20, fill="both", expand=True)
 
@@ -42,9 +40,6 @@ def ventana3(parent,frame2):
     frame_izquierdo.pack_propagate(False)
 
     frame_izquierdo.place_forget()
-
-    # frame_botones = ttk.Frame(ventana3)
-    # frame_botones.pack(pady=10)
 
     botones = [
         ("Mostrar gráfico"),
@@ -71,7 +66,7 @@ def ventana3(parent,frame2):
             width=20,
             command=lambda t=texto: manejar_evento3(t),
         )
-        boton.pack(side="left", padx=5)
+        boton.pack(pady=10)
 
     def toggle_menu():
         if frame_izquierdo.winfo_ismapped():
