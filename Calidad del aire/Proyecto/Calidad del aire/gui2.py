@@ -94,7 +94,7 @@ def ventana_principal():
         if frame_izquierdo.winfo_ismapped():
             frame_izquierdo.place_forget()
         else:
-            frame_izquierdo.place(x=10, y=140, width=200, height=500)
+            frame_izquierdo.place(x=0, y=140, width=200, height=1080)
 
     boton_menu = ttk.Button(ventana, text="Menú", command=toggle_menu)
     boton_menu.place(x=10, y=10)

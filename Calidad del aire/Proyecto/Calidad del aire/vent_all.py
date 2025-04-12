@@ -30,7 +30,7 @@ def ventana2(parent,frame2):
     frame_grafico.pack(pady=20, fill="both", expand=True)
 
     frame_izquierdo = ttk.Frame(ventana2)
-    frame_izquierdo.place(x=10, y=100, width=200, height=500)
+    frame_izquierdo.place(x=10, y=100, width=200, height=1080)
     frame_izquierdo.pack_propagate(False)
 
     frame_izquierdo.place_forget()
@@ -62,14 +62,14 @@ def ventana2(parent,frame2):
         if frame_izquierdo.winfo_ismapped():
             frame_izquierdo.place_forget()
         else:
-            frame_izquierdo.place(x=10, y=45, width=200, height=160)
+            frame_izquierdo.place(x=0, y=45, width=200, height=1080)
 
     boton_menu = ttk.Button(ventana2, text="Menú", command=toggle_menu)
     boton_menu.place(x=10, y=10)
 
     texto_cancelar = ttk.Label(
         frame_derecho2,
-        text="\nPresione Cancelar para salir del programa",
+        text="Para salir de esta ventana, presione el botón Cancelar en el menú desplegable.",
         font=fuente_descripcion,
     )
     texto_cancelar.pack(pady=10)

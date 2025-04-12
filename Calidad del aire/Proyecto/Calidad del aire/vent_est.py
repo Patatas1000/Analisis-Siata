@@ -22,7 +22,8 @@ def ventana3(parent,frame2):
     frame_derecho = ttk.Frame(ventana3)
     frame_derecho.pack(side="right", fill="both", expand=True, padx=10, pady=10)
 
-    titulo = ttk.Label(frame_derecho, text="Seleccione una estación para analizar los datos diarios promedio de los contaminantes. Use los botones para mostrar el gráfico o los datos correspondientes.",
+    titulo = ttk.Label(frame_derecho, text="Use la lista desplegable para seleccionar el código de la estación para la cual desea conocer los valores diarios promedio para los contaminantes medidos. " \
+    "Use los botones Mostrar el gráfico y Datos correspondientes, en el menú desplegable para ver el gráfico o los datos para la estación seleccionada.",
                        font=fuente_descripcion, wraplength=700, justify="center")
     titulo.pack(pady=10)
 
@@ -72,14 +73,14 @@ def ventana3(parent,frame2):
         if frame_izquierdo.winfo_ismapped():
             frame_izquierdo.place_forget()
         else:
-            frame_izquierdo.place(x=10, y=45, width=200, height=160)
+            frame_izquierdo.place(x=0, y=45, width=200, height=1080)
 
     boton_menu = ttk.Button(ventana3, text="Menú", command=toggle_menu)
     boton_menu.place(x=10, y=10)
 
     texto_cancelar = ttk.Label(
         frame_derecho,
-        text="Presione Cancelar para salir de la ventana",
+        text="Para salir de esta ventana, presione el botón Cancelar en el menú desplegable.",
         font=fuente_descripcion,
     )
     texto_cancelar.pack(pady=10)
