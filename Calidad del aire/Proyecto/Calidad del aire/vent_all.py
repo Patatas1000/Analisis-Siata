@@ -23,7 +23,7 @@ def ventana2(parent,frame2):
     frame_derecho2.pack(side="right", fill="both", expand=True, padx=10, pady=10)
 
     titulo = ttk.Label(frame_derecho2, text="En esta ventana puede revisar el gráfico de los valores diarios promedio para todos los contaminantes en todas las estaciones en la base de datos, además también puede visualizar las primeras 40 filas de los datos utilizados en este análisis, usando los botones para mostrar el gráfico y los datos respectivamente.",
-                       font=fuente_descripcion, wraplength=700, justify="left")
+                       font=fuente_descripcion, wraplength=700, justify="center")
     titulo.pack(pady=10)
 
     frame_grafico = ttk.Frame(frame_derecho2)

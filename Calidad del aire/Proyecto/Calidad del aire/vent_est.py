@@ -19,20 +19,32 @@ def ventana3(parent,frame2):
     fuente_texto = ("Arial", 16, "bold")
     fuente_descripcion = ("Arial", 14)
 
-    titulo = ttk.Label(ventana3, text="Seleccione una estación para analizar los datos diarios promedio de los contaminantes. Use los botones para mostrar el gráfico o los datos correspondientes.", font=fuente_descripcion, wraplength=1100, justify="left")
+    frame_derecho = ttk.Frame(ventana3)
+    frame_derecho.pack(side="right", fill="both", expand=True, padx=10, pady=10)
+
+    titulo = ttk.Label(frame_derecho, text="Seleccione una estación para analizar los datos diarios promedio de los contaminantes. Use los botones para mostrar el gráfico o los datos correspondientes.",
+                       font=fuente_descripcion, wraplength=700, justify="center")
     titulo.pack(pady=10)
 
     id_estaciones = sorted(frame2['codigoSerial'].unique())
     estacion_seleccionada = tk.StringVar(value=id_estaciones[0])
 
-    combobox = ttk.Combobox(ventana3, textvariable=estacion_seleccionada, values=id_estaciones, state="readonly", font=fuente_texto)
+    combobox = ttk.Combobox(frame_derecho, textvariable=estacion_seleccionada, values=id_estaciones, state="readonly", font=fuente_texto)
     combobox.pack(pady=10)
 
-    frame_contenido = ttk.Frame(ventana3)
+
+
+    frame_contenido = ttk.Frame(frame_derecho)
     frame_contenido.pack(pady=20, fill="both", expand=True)
 
-    frame_botones = ttk.Frame(ventana3)
-    frame_botones.pack(pady=10)
+    frame_izquierdo = ttk.Frame(ventana3)
+    frame_izquierdo.place(x=10, y=100, width=200, height=500)
+    frame_izquierdo.pack_propagate(False)
+
+    frame_izquierdo.place_forget()
+
+    # frame_botones = ttk.Frame(ventana3)
+    # frame_botones.pack(pady=10)
 
     botones = [
         ("Mostrar gráfico"),
@@ -54,15 +66,24 @@ def ventana3(parent,frame2):
 
     for texto in botones:
         boton = ttk.Button(
-            frame_botones,
+            frame_izquierdo,
             text=texto,
             width=20,
             command=lambda t=texto: manejar_evento3(t),
         )
         boton.pack(side="left", padx=5)
 
+    def toggle_menu():
+        if frame_izquierdo.winfo_ismapped():
+            frame_izquierdo.place_forget()
+        else:
+            frame_izquierdo.place(x=10, y=45, width=200, height=160)
+
+    boton_menu = ttk.Button(ventana3, text="Menú", command=toggle_menu)
+    boton_menu.place(x=10, y=10)
+
     texto_cancelar = ttk.Label(
-        ventana3,
+        frame_derecho,
         text="Presione Cancelar para salir de la ventana",
         font=fuente_descripcion,
     )

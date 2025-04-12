@@ -45,7 +45,7 @@ def ventana_principal():
     nombres = ttk.Label(
         frame_derecho,
         text="Juan Diego Suárez Agualimpia \nIngeniero Químico \nUniversidad Nacional de Colombia",
-        font=fuente_texto,
+        font=fuente_texto,justify="center"
     )
     nombres.pack(pady=10)
 
