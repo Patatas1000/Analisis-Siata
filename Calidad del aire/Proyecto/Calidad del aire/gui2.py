@@ -12,6 +12,8 @@ from per_station import mostrar_grafico_est
 from per_station import mostrar_dataframe_est
 from vent_all import ventana2
 from vent_est import ventana3
+from vent_lim import ventana4
+from vent_ind import ventana5
 from tema import apply_theme_to_titlebar_dinamico
 from tema import windows_theme_dinamico
 import numpy as np
@@ -24,14 +26,6 @@ import os
 path=r'Calidad del aire\Proyecto\Bases'
 
 frame2=data(path)
-
-def ventana4():
-    new_window = tk.Toplevel()
-    new_window.title('Gráfica de contaminantes en todas lass estaciones')
-
-def ventana5():
-    new_window = tk.Toplevel()
-    new_window.title('Gráfica de contaminantes en todas lass estaciones')
 
 def ventana_principal():
     ventana = tk.Tk()
@@ -83,8 +77,7 @@ def ventana_principal():
         "Todas las estaciones",
         "Análisis por estación",
         "Valores límites diarios",
-        "Índice parcial horario",
-        "Índice global horario",
+        "Índice parcial y global horario",
         "Cancelar",
     ]
 
@@ -113,9 +106,10 @@ def ventana_principal():
             ventana2(ventana,frame2)
         elif evento == "Análisis por estación":
             ventana3(ventana,frame2)
-        elif evento == "Índice parcial horario":
-            ventana4()
-        elif evento == "Índice global horario":
+            ventana2(ventana,frame2)
+        elif evento == "Valores límites diarios":
+            ventana4(ventana,frame2)
+        elif evento == "Índice parcial y global horario":
             ventana5()
 
     windows_theme_dinamico(ventana)
