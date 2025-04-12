@@ -84,5 +84,4 @@ def ventana3(parent,frame2):
         font=fuente_descripcion,
     )
     texto_cancelar.pack(pady=10)
-    windows_theme_dinamico(ventana3)
     apply_theme_to_titlebar_dinamico(ventana3)
