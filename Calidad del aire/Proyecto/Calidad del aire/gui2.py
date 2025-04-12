@@ -102,6 +102,7 @@ def ventana_principal():
     def manejar_evento(evento):
         if evento == "Cancelar":
             ventana.destroy()
+            
         elif evento == "Todas las estaciones":
             ventana2(ventana,frame2)
         elif evento == "Análisis por estación":

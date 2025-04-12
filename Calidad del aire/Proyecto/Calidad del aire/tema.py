@@ -38,12 +38,20 @@ def apply_theme_to_titlebar_dinamico(ventana):
     actualizar_titulo()
 
 def windows_theme_dinamico(ventana):
+    timer_id = None
+
     def actualizar_tema():
-        nuevo_tema = darkdetect.theme().lower()
+        global timer_id
+        if ventana.winfo_exists():
+            nuevo_tema = darkdetect.theme().lower()
+            if sv_ttk.get_theme() != nuevo_tema:
+                sv_ttk.set_theme(nuevo_tema)
+            timer_id = ventana.after(1000, actualizar_tema)
 
-        if sv_ttk.get_theme() != nuevo_tema:
-            sv_ttk.set_theme(nuevo_tema)
+    def on_close():
+        if timer_id:
+            ventana.after_cancel(timer_id)
+        ventana.destroy()
 
-        ventana.after(1000, actualizar_tema)
-
+    ventana.protocol("WM_DELETE_WINDOW", on_close)
     actualizar_tema()

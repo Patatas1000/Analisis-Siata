@@ -15,14 +15,12 @@ import tkinter as tk
 from tkinter import ttk
 import sv_ttk
 
+
+
 def all(frame2, frame_grafico):
     tema_actual = [None]
-
     def actualizar_tema_y_grafico():
         nonlocal tema_actual
-        if not frame_grafico.winfo_exists():
-            return
-
         nuevo_tema = darkdetect.theme()
 
         if tema_actual[0] != nuevo_tema:
@@ -44,7 +42,7 @@ def all(frame2, frame_grafico):
         medias_dict = {}
 
         for columna in columnas:
-            frame_filtrado = frame2[(frame2[columna] > 0) & (frame2[columna] < 700)]
+            frame_filtrado = frame2[(frame2[columna] > 0) & (frame2[columna] < 1100)]
             medias = frame_filtrado.groupby([frame_filtrado.index.year,
                                              frame_filtrado.index.month,
                                              frame_filtrado.index.day])[columna].mean()
@@ -72,7 +70,7 @@ def all(frame2, frame_grafico):
         canvas.get_tk_widget().pack(fill="both", expand=True)
 
     dibujar_grafico()
-
+    
     actualizar_tema_y_grafico()
 
 def mostrar_dataframe(frame2, frame_grafico):
