@@ -43,4 +43,4 @@ def ICA(frame2):
 
 
     # ICA = (((I_hi-I_lo)/(BP_hi-Bp_lo))*(C_cont-Bp_lo))-I_lo
-ICA(frame2)
+# ICA(frame2)
