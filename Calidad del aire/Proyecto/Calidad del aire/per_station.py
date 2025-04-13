@@ -36,7 +36,7 @@ def mostrar_grafico_est(frame_filtrado, frame_contenido):
         for widget in frame_contenido.winfo_children():
             widget.destroy()
 
-        columnas = ['pm25','pm10', 'no', 'no2', 'nox', 'ozono', 'so2']
+        columnas = ['pm25','pm10', 'no', 'no2', 'nox', 'ozono','so2']
         medias_dict = {}
 
         for columna in columnas:
