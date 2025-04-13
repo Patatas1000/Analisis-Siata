@@ -55,28 +55,3 @@ def windows_theme_dinamico(ventana):
 
     ventana.protocol("WM_DELETE_WINDOW", on_close)
     actualizar_tema()
-
-def menu_dinamico(ventana):
-    timer_id = None
-
-    def actualizar_menu():
-        global timer_id
-        if ventana.winfo_exists():
-            tema_actual = darkdetect.theme().lower()
-
-            if tema_actual == "dark":
-                icon=PhotoImage(file=r'Calidad del aire\Proyecto\Icons\menuL.png')
-            elif tema_actual == "light":
-                icon=PhotoImage(file=r'Calidad del aire\Proyecto\Icons\menuD.png')
-
-            timer_id = ventana.after(1000, actualizar_menu)
-
-    def on_close():
-        nonlocal timer_id
-        if timer_id:
-            ventana.after_cancel(timer_id)
-        ventana.destroy()
-
-    ventana.protocol("WM_DELETE_WINDOW", on_close)
-
-    actualizar_menu()
