@@ -8,7 +8,7 @@ import pywinstyles, sys
 from all_stations import all
 from all_stations import mostrar_dataframe
 from tema import apply_theme_to_titlebar_dinamico
-from tema import windows_theme_dinamico
+from tema import menu_dinamico
 
 def ventana2(parent,frame2):
     ventana2 = tk.Toplevel(parent)
@@ -64,8 +64,10 @@ def ventana2(parent,frame2):
         else:
             frame_izquierdo.place(x=0, y=45, width=200, height=1080)
 
-    icon=PhotoImage(file=r'Calidad del aire\Proyecto\Icons\menu.png')
-
+    # icon=PhotoImage(file=r'Calidad del aire\Proyecto\Icons\menuL.png')
+    icon=menu_dinamico(ventana2)
+    icon_label= Label(ventana2, image=icon)
+    
     boton_menu = ttk.Button(ventana2, image=icon, command=toggle_menu)
     boton_menu.place(x=10, y=10)
 
@@ -77,3 +79,5 @@ def ventana2(parent,frame2):
     texto_cancelar.pack(pady=10)
 
     apply_theme_to_titlebar_dinamico(ventana2)
+
+    ventana2.mainloop()
