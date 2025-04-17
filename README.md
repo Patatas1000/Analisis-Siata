@@ -14,9 +14,9 @@ Luego de instalar la última versión de Python, debe instalar las librerías ne
 - En esta ventana escribe "cmd", sin comillas, y luego presiona Enter.
 - En la ventana del símbolo del sistema pega lo siguiente:
 
-'''
+```
 pip install sv-ttk
-'''
+```
 
 Este programa permite una fácil visualización de la información, además detecta anomalías entre los datos y se encarga de eliminarlas de manera automática, viéndose reflejado en los resultados.
 
