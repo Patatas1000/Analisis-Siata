@@ -6,6 +6,7 @@ import sv_ttk
 import darkdetect
 import pywinstyles, sys
 from database_info import data
+from database_info import coord
 from all_stations import all
 from all_stations import mostrar_dataframe
 from per_station import mostrar_grafico_est
@@ -24,8 +25,10 @@ import glob
 import os
 
 path=r'Calidad del aire\Proyecto\Bases'
+path2=r'C:\Users\ivans\OneDrive\Desktop\Juan\Analisis-Siata\Calidad del aire\Proyecto\Estaciones'
 
 frame2=data(path)
+coordenadas = coord(path2)
 
 def ventana_principal():
     ventana = tk.Tk()
@@ -105,7 +108,7 @@ def ventana_principal():
         elif evento == "Todas las estaciones":
             ventana2(ventana,frame2)
         elif evento == "Análisis por estación":
-            ventana3(ventana,frame2)
+            ventana3(ventana,frame2,coordenadas)
         elif evento == "Valores límites diarios":
             ventana4(ventana)
         elif evento == "Índice parcial y global horario":

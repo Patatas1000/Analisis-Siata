@@ -33,9 +33,9 @@ def data(path):
     return(frame2)
 
 ##path2 = r'Calidad del aire\Proyecto\Estaciones'
-
 path2= r'C:\Users\ivans\OneDrive\Desktop\Juan\Analisis-Siata\Calidad del aire\Proyecto\Estaciones'
+def coord(path2):
 
-estaciones = pd.read_csv(path2 + '/Estaciones_CalidadAire.csv', encoding='latin1')
-
-print(estaciones.head(10))
+    estaciones = pd.read_csv(path2 + '/Estaciones_CalidadAire.csv', encoding='latin1')
+    estaciones.set_index('Codigo', inplace=True)
+    return(estaciones)
