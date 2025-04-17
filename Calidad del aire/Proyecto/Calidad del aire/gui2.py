@@ -13,7 +13,7 @@ from per_station import mostrar_dataframe_est
 from vent_all import ventana2
 from vent_est import ventana3
 from vent_lim import ventana4
-from vent_ind import ventana5
+from vent_map import ventana5
 from tema import apply_theme_to_titlebar_dinamico
 from tema import windows_theme_dinamico
 import numpy as np

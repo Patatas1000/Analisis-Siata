@@ -15,7 +15,7 @@ def data(path):
     data = []
 
     for filename in all_files:
-        df = pd.read_csv(filename, index_col=None, header=0)
+        df = pd.read_csv(filename, index_col=None, header=0, encoding='utf-8')
         data.append(df)
 
     frame = pd.concat(data, axis=0, ignore_index=True)
