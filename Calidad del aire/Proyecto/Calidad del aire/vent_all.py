@@ -65,10 +65,10 @@ def ventana2(parent,frame2):
             frame_izquierdo.place(x=0, y=45, width=200, height=1080)
 
     # icon=PhotoImage(file=r'Calidad del aire\Proyecto\Icons\menuL.png')
-    icon=menu_dinamico(ventana2)
-    icon_label= Label(ventana2, image=icon)
+    # icon=menu_dinamico(ventana2)
+    # icon_label= Label(ventana2, image=icon)
     
-    boton_menu = ttk.Button(ventana2, image=icon, command=toggle_menu)
+    boton_menu = ttk.Button(ventana2, text='Menú', command=toggle_menu)
     boton_menu.place(x=10, y=10)
 
     texto_cancelar = ttk.Label(
