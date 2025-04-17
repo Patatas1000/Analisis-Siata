@@ -8,7 +8,6 @@ import pywinstyles, sys
 from all_stations import all
 from all_stations import mostrar_dataframe
 from tema import apply_theme_to_titlebar_dinamico
-from tema import menu_dinamico
 
 def ventana2(parent,frame2):
     ventana2 = tk.Toplevel(parent)
