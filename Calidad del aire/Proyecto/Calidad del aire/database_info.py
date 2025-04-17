@@ -15,7 +15,7 @@ def data(path):
     data = []
 
     for filename in all_files:
-        df = pd.read_csv(filename, index_col=None, header=0, encoding='utf-8')
+        df = pd.read_csv(filename, index_col=None, header=0)
         data.append(df)
 
     frame = pd.concat(data, axis=0, ignore_index=True)
@@ -36,6 +36,6 @@ def data(path):
 path2= r'C:\Users\ivans\OneDrive\Desktop\Juan\Analisis-Siata\Calidad del aire\Proyecto\Estaciones'
 def coord(path2):
 
-    estaciones = pd.read_csv(path2 + '/Estaciones_CalidadAire.csv', encoding='latin1')
+    estaciones = pd.read_csv(path2 + '/Estaciones_CalidadAire.txt', sep=";")
     estaciones.set_index('Codigo', inplace=True)
     return(estaciones)
