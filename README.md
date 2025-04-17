@@ -12,7 +12,7 @@ Luego de instalar la última versión de Python, debe instalar las librerías ne
 
 - Presiona la tecla Win+R para abrir la ventana de ejecutar.
 - En esta ventana escribe "cmd", sin comillas, y luego presiona Enter.
-   Nota: Si está usando Visual Studio Code, use la consola de comandos dentro de Visual Studio.
+  Nota: Si está usando Visual Studio Code, use la consola de comandos dentro de Visual Studio.
 - En la ventana del símbolo del sistema pega lo siguiente:
 
 ```
