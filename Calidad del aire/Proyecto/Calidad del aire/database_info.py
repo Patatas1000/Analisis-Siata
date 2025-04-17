@@ -31,3 +31,11 @@ def data(path):
         'pliquida_ssr', 'calidad_pliquida_ssr', 'rglobal_ssr', 'calidad_rglobal_ssr', 'taire10_ssr', 'calidad_taire10_ssr', 'vviento_ssr', 'calidad_vviento_ssr']
     frame2=frame.drop(columns=drop, axis=1)
     return(frame2)
+
+##path2 = r'Calidad del aire\Proyecto\Estaciones'
+
+path2= r'C:\Users\ivans\OneDrive\Desktop\Juan\Analisis-Siata\Calidad del aire\Proyecto\Estaciones'
+
+estaciones = pd.read_csv(path2 + '/Estaciones_CalidadAire.csv', encoding='latin1')
+
+print(estaciones.head(10))
