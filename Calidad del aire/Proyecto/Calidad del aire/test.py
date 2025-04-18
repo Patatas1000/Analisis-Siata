@@ -29,24 +29,42 @@
 
 # root.mainloop()
 
+# import tkinter as tk
+# from tkinterweb import HtmlFrame
+# import folium
+
+# # Crear un mapa con folium
+# mapa = folium.Map(location=[6.5, -74.5], zoom_start=12)
+# mapa.save("mapa2.html")  # Guardar el mapa en un archivo HTML
+
+# # Crear ventana principal con tkinter
+# root = tk.Tk()
+# root.title("Mapa con tkinterweb")
+
+# # Crear marco HTML
+# frame = HtmlFrame(root)
+# frame.pack(fill="both", expand=True)
+
+# # Cargar el mapa HTML generado por folium
+# frame.load_file(r"C:\Users\ivans\OneDrive\Desktop\Juan\Analisis-Siata\mapa2.html")  # Cargar el archivo HTML del mapa
+
+# # Ejecutar la ventana
+# root.mainloop()
+
 import tkinter as tk
-from tkinterweb import HtmlFrame
-import folium
+import tkintermapview
 
-# Crear un mapa con folium
-mapa = folium.Map(location=[6.5, -74.5], zoom_start=12)
-mapa.save("mapa2.html")  # Guardar el mapa en un archivo HTML
-
-# Crear ventana principal con tkinter
+# Crear ventana principal
 root = tk.Tk()
-root.title("Mapa con tkinterweb")
+root.title("Mapa con TkinterMapView")
 
-# Crear marco HTML
-frame = HtmlFrame(root)
-frame.pack(fill="both", expand=True)
+# Crear widget de mapa
+map_widget = tkintermapview.TkinterMapView(root, width=800, height=600)
+map_widget.pack(fill="both", expand=True)
 
-# Cargar el mapa HTML generado por folium
-frame.load_file(r"C:\Users\ivans\OneDrive\Desktop\Juan\Analisis-Siata\mapa2.html")  # Cargar el archivo HTML del mapa
+# Establecer posición inicial (por ejemplo, Bogotá, Colombia)
+map_widget.set_position(4.711, -74.072)
+map_widget.set_zoom(12)
 
 # Ejecutar la ventana
 root.mainloop()

@@ -1,7 +1,7 @@
 Codigo;Estacion;Longitud;Latitud;Ciudad
 6;Politecnico Colombiano Jaime Isaza Cadavid - Medellin;-75.57777;6.20897;Medellin
 12;Estación Tráfico Centro;-75.56958;6.25256;Medellin
-28;Itagüí - Casa de Justicia Itagüí;-75.59721;6.18567;Medellin
+28;Itagüí - Casa de Justicia Itagüí;-75.59721;6.18567;Itagüí
 37;Universidad San Buenaventura;-75.56867;6.33070;Bello
 38;Itagüí - I.E. Concejo Municipal de Itagüí;-75.64436;6.16850;Itagüí
 40;Parque de las Aguas;-75.41949;6.40671;Barbosa
