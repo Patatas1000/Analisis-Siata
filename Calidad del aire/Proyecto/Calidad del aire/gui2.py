@@ -13,8 +13,8 @@ from per_station import mostrar_grafico_est
 from per_station import mostrar_dataframe_est
 from vent_all import ventana2
 from vent_est import ventana3
-from vent_lim import ventana4
-from vent_map import ventana5
+from vent_lim import ventana5
+from vent_map import ventana4
 from tema import apply_theme_to_titlebar_dinamico
 from tema import windows_theme_dinamico
 import numpy as np
@@ -79,7 +79,7 @@ def ventana_principal():
     botones = [
         "Todas las estaciones",
         "Análisis por estación",
-        "Valores límites diarios",
+        "Mapa estaciones",
         "Índice parcial y global horario",
         "Cancelar",
     ]
@@ -109,9 +109,9 @@ def ventana_principal():
             ventana2(ventana,frame2)
         elif evento == "Análisis por estación":
             ventana3(ventana,frame2,coordenadas)
-        elif evento == "Valores límites diarios":
-            ventana4(ventana)
-        elif evento == "Índice parcial y global horario":
+        elif evento == "Mapa estaciones":
+            ventana4(ventana,coordenadas)
+        elif evento == "Índice de calidad del aire":
             ventana5(ventana)
 
     windows_theme_dinamico(ventana)
