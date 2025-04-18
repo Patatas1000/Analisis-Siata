@@ -6,7 +6,7 @@ import glob
 import os
 
 # path=r'Calidad del aire\Proyecto\Datos'
-path=r'Calidad del aire\Proyecto\Bases'
+# path=r'Calidad del aire\Proyecto\Bases'
 
 def data(path):
 
@@ -32,8 +32,8 @@ def data(path):
     frame2=frame.drop(columns=drop, axis=1)
     return(frame2)
 
-##path2 = r'Calidad del aire\Proyecto\Estaciones'
-path2= r'C:\Users\ivans\OneDrive\Desktop\Juan\Analisis-Siata\Calidad del aire\Proyecto\Estaciones'
+# path2 = r'Calidad del aire\Proyecto\Estaciones'
+# path2= r'C:\Users\ivans\OneDrive\Desktop\Juan\Analisis-Siata\Calidad del aire\Proyecto\Estaciones'
 def coord(path2):
 
     estaciones = pd.read_csv(path2 + '/Estaciones_CalidadAire.txt', sep=";")

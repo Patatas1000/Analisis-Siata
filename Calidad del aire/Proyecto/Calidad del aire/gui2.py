@@ -25,7 +25,7 @@ import glob
 import os
 
 path=r'Calidad del aire\Proyecto\Bases'
-path2=r'C:\Users\ivans\OneDrive\Desktop\Juan\Analisis-Siata\Calidad del aire\Proyecto\Estaciones'
+path2=r'Calidad del aire\Proyecto\Estaciones'
 
 frame2=data(path)
 coordenadas = coord(path2)
