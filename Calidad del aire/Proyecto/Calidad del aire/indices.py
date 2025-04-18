@@ -28,12 +28,6 @@ def ICA(frame2):
             [frame_filtrado.index.year, frame_filtrado.index.month, frame_filtrado.index.day]
         ).apply(lambda x: x.index[0]).values)
         medias_dict[columna] = medias_df
-        # Convertir la serie a DataFrame y ajustar el índice
-        medias_df = medias.to_frame(name=columna)
-        medias_df.index = pd.to_datetime(frame_filtrado.groupby(
-            [frame_filtrado.index.year, frame_filtrado.index.month, frame_filtrado.index.day]
-        ).apply(lambda x: x.index[0]).values)
-        medias_dict[columna] = medias_df  # Almacenar el DataFrame en el diccionario
     frame3=pd.concat(medias_dict.values(), axis=1)
     # print(frame3.columns)
     # print(frame3.index)

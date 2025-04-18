@@ -11,8 +11,17 @@ def ventana4(parent, coordenadas):
     columnas = ['Estacion', 'Longitud', 'Latitud', 'Ciudad']
     Cities = ['Medellin', 'Medellín']
 
+    fuente_descripcion = ("Arial", 14)
+    
     vent_map = tk.Toplevel()
     vent_map.title("Mapa de estaciones y fuentes de contaminacion")
+
+    frame = ttk.Frame(vent_map)
+    frame.pack(fill="both", expand=True, padx=10, pady=10)
+
+    titulo = ttk.Label(frame, text="Para visualizar los nombres de las estaciones haga click sobre el marcador de la estación en el mapa.",
+                       font=fuente_descripcion, wraplength=700, justify="center")
+    titulo.pack(pady=10)
 
     map_widget = tkintermapview.TkinterMapView(vent_map, width=1126, height=634)
     map_widget.pack(fill="both", expand=True)
@@ -45,4 +54,3 @@ def ventana4(parent, coordenadas):
             markers[marker] = row['Estacion']
 
     apply_theme_to_titlebar_dinamico(vent_map)
-    # vent_map.mainloop()
