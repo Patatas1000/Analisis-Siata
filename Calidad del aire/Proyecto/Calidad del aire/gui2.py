@@ -15,6 +15,7 @@ from vent_all import ventana2
 from vent_est import ventana3
 from vent_lim import ventana5
 from vent_map import ventana4
+from adj_ven import centro
 from tema import apply_theme_to_titlebar_dinamico
 from tema import windows_theme_dinamico
 import numpy as np
@@ -33,7 +34,12 @@ coordenadas = coord(path2)
 def ventana_principal():
     ventana = tk.Tk()
     ventana.title("Análisis calidad del aire de Medellín")
-    ventana.geometry("1126x634")
+    # ventana.geometry("1126x634")
+
+    h=634
+    w=1126
+
+    centro(ventana, w, h)
 
     fuente_titulo = ("Arial", 20, "bold")
     fuente_texto = ("Arial", 16, "bold")

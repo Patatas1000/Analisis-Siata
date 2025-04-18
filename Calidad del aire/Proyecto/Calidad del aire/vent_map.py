@@ -5,6 +5,7 @@ from tema import apply_theme_to_titlebar_dinamico
 import tkinter as tk
 from tkinter import ttk
 from tkinter import PhotoImage
+from adj_ven import centro
 
 def ventana4(parent, coordenadas):
 
@@ -15,6 +16,11 @@ def ventana4(parent, coordenadas):
     
     vent_map = tk.Toplevel()
     vent_map.title("Mapa de estaciones y fuentes de contaminacion")
+    
+    h=634
+    w=1126
+
+    centro(vent_map, w, h)
 
     frame = ttk.Frame(vent_map)
     frame.pack(fill="both", expand=True, padx=10, pady=10)

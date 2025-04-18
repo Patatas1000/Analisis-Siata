@@ -8,11 +8,17 @@ import pywinstyles, sys
 from all_stations import all
 from all_stations import mostrar_dataframe
 from tema import apply_theme_to_titlebar_dinamico
+from adj_ven import centro
 
 def ventana2(parent,frame2):
     ventana2 = tk.Toplevel(parent)
     ventana2.title('Análisis de datos en todas las estaciones')
-    ventana2.geometry("1200x600")
+    # ventana2.geometry("1200x600")
+
+    h=634
+    w=1126
+
+    centro(ventana2, w, h)
 
     fuente_titulo = ("Arial", 20, "bold")
     fuente_texto = ("Arial", 16, "bold")
