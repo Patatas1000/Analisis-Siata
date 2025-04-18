@@ -17,10 +17,9 @@ def ventana4(parent, coordenadas):
     vent_map = tk.Toplevel()
     vent_map.title("Mapa de estaciones y fuentes de contaminacion")
     
-    h=634
-    w=1126
+    w , h = 1126 , 634
 
-    centro(vent_map, w, h)
+    centro(self, w, h)
 
     frame = ttk.Frame(vent_map)
     frame.pack(fill="both", expand=True, padx=10, pady=10)

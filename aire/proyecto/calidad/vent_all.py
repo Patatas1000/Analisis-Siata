@@ -15,10 +15,9 @@ def ventana2(parent,frame2):
     ventana2.title('Análisis de datos en todas las estaciones')
     # ventana2.geometry("1200x600")
 
-    h=634
-    w=1126
+    w , h = 1126 , 634
 
-    centro(ventana2, w, h)
+    centro(self, w, h)
 
     fuente_titulo = ("Arial", 20, "bold")
     fuente_texto = ("Arial", 16, "bold")

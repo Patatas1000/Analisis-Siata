@@ -16,10 +16,9 @@ def ventana3(parent, frame2, coordenadas):
     ventana3.title('Análisis de datos en todas las estaciones')
     # ventana3.geometry("1200x600")
 
-    h=634
-    w=1126
+    w , h = 1126 , 634
 
-    centro(ventana3, w, h)
+    centro(self, w, h)
 
     fuente_titulo = ("Arial", 20, "bold")
     fuente_texto = ("Arial", 16, "bold")
