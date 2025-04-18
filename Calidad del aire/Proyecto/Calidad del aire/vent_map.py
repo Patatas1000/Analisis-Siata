@@ -6,7 +6,6 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import PhotoImage
 
-
 def ventana4(parent, coordenadas):
 
     columnas = ['Estacion', 'Longitud', 'Latitud', 'Ciudad']
