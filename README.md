@@ -36,7 +36,7 @@ Permitiendo realizar análisis al conjunto de datos completo, es decir, para tod
 
 ![Gráfico del conjunto de datos completo](https://github.com/Patatas1000/Analisis-Siata/blob/main/aire/proyecto/Images/pa_todo_graph.png)
 
-![Conjunto de datos](https://github.com/Patatas1000/Analisis-Siata/blob/Patatas1000-patch-1/main/aire/proyecto/Images/pa_todo_data.png)
+![Conjunto de datos](https://github.com/Patatas1000/Analisis-Siata/blob/main/aire/proyecto/Images/pa_todo_data.png)
 
 Además, también permite realizar el análisis para cada una de las estaciones de manera individual, permitiendo elegir la estación acorde al código con el que se encuentre registrada, considerando que no en todas las estaciones se realizan los mismos análsis, el código filtra de manera automática para cada estación los contaminantes de los cuáles no se tiene registro y realiza la gráfica de los datos válidos, también en forma de promedios diarios de concentración de los contaminantes, adicionalmente, también se puede mostrar una parte de los datos utilizados para el análisis de cada estación.
 
