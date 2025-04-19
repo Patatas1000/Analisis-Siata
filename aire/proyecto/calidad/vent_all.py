@@ -7,7 +7,7 @@ import darkdetect
 import pywinstyles, sys
 from all_stations import mostrar_todo
 from all_stations import mostrar_dataframe
-from tema import apply_theme_to_titlebar_dinamico
+from tema import apply_theme_to_titlebar
 from adj_ven import centro
 
 def ventana2(parent,frame2):
@@ -82,6 +82,6 @@ def ventana2(parent,frame2):
     )
     texto_cancelar.pack(pady=10)
 
-    apply_theme_to_titlebar_dinamico(ventana2)
+    apply_theme_to_titlebar(ventana2)
 
     ventana2.mainloop()

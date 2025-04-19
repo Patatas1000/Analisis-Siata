@@ -7,8 +7,8 @@ import darkdetect
 import pywinstyles, sys
 from per_station import mostrar_grafico_est
 from per_station import mostrar_dataframe_est
-from tema import apply_theme_to_titlebar_dinamico
-from tema import windows_theme_dinamico
+from tema import apply_theme_to_titlebar
+from tema import window_theme
 from adj_ven import centro
 
 def ventana3(parent, frame2, coordenadas):
@@ -102,4 +102,4 @@ def ventana3(parent, frame2, coordenadas):
         font=fuente_descripcion,
     )
     texto_cancelar.pack(pady=10)
-    apply_theme_to_titlebar_dinamico(ventana3)
+    apply_theme_to_titlebar(ventana3)

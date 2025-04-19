@@ -16,8 +16,8 @@ from vent_est import ventana3
 from vent_lim import ventana5
 from vent_map import ventana4
 from adj_ven import centro
-from tema import apply_theme_to_titlebar_dinamico
-from tema import windows_theme_dinamico
+from tema import apply_theme_to_titlebar
+from tema import window_theme
 import numpy as np
 import pandas as pd
 import regex as rg
@@ -119,8 +119,8 @@ def ventana_principal():
         elif evento == "Índice de calidad del aire":
             ventana5(ventana)
 
-    windows_theme_dinamico(ventana)
-    apply_theme_to_titlebar_dinamico(ventana)
+    window_theme(ventana)
+    apply_theme_to_titlebar(ventana)
 
     ventana.mainloop()
 

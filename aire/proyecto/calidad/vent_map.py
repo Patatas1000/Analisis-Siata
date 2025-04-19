@@ -1,7 +1,7 @@
 import tkintermapview
 import pandas as pd
 from database_info import coord
-from tema import apply_theme_to_titlebar_dinamico
+from tema import apply_theme_to_titlebar
 import tkinter as tk
 from tkinter import ttk
 from tkinter import PhotoImage
@@ -58,4 +58,4 @@ def ventana4(parent, coordenadas):
             )
             markers[marker] = row['Estacion']
 
-    apply_theme_to_titlebar_dinamico(vent_map)
+    apply_theme_to_titlebar(vent_map)
