@@ -72,7 +72,7 @@
 from tkinter import *
 #from tkinter import ttk
 from ttkbootstrap import ttk
-from test2 import *
+from aire.proyecto.version2.test2 import *
 
 #python -m pip install git+https://github.com/israel-dryer/ttkbootstrap
 #pip3 install git+https://github.com/israel-dryer/ttkbootstrap
