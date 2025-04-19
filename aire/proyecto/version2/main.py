@@ -14,7 +14,6 @@ from database_info import data
 from database_info import coord
 from gui import App
 
-
 root = tk.Tk()
 app = App(root)
 root.mainloop()

@@ -18,44 +18,35 @@ class App:
         self.root = root
         self.root.title("Análisis de calidad del aire de Medellín")
         # self.root.geometry("900x600")
-        centro(self.root, 1126, 634)
+        centro(self.root, 1690, 950)
         self.menu_visible = False
         self.menu_width = 170
 
-        # Estilo solo para el menú
-        # self.menu_style = tb.Style("darkly")
-
-        # Crear contenedor para las vistas internas
         self.container = tk.Frame(self.root, bg="#f0f0f0")
         self.container.pack(side="right", fill="both", expand=True, padx=10, pady=10)
 
         p_ancho= self.root.winfo_screenwidth()
 
-        # Frame lateral
         self.menu_frame = tb.Frame(self.root, bootstyle="dark", width=0, height=600)
         self.menu_frame.place(x=0, y=0, height=p_ancho)
-        
-        # Botón para abrir/cerrar el menú
+
         self.toggle_btn = tk.Button(self.root, text="☰", font=("Arial", 16), command=self.toggle_menu)
         self.toggle_btn.place(x=10, y=10)
 
-        # Vistas (frames)
         self.frames = {
             "Inicio": self.inicio(),
             "Análisis total": self.todas(),
             "Análisis por estación": self.estacion(),
             "Mapa":self.mapa(),
-            "Salir": self.crear_salir()
+            "Salir": self.salir()
         }
 
-        # Botones del menú
         opciones = list(self.frames.keys())
         for i, texto in enumerate(opciones):
             btn = tb.Button(self.menu_frame, text=texto, bootstyle="secondary", width=20,
                             command=lambda name=texto: self.mostrar_frame(name))
             btn.place(x=10, y=60 + i * 60, height=40)
 
-        # Mostrar inicio por defecto
         self.mostrar_frame("Inicio")
         apply_theme_to_titlebar(self.root)
         window_theme(self.root)
@@ -136,10 +127,7 @@ class App:
         label = tk.Label(frame, text="Análisis en todas las estaciones del SIATA", font=("Arial", 24))
         label.pack(pady=20)
  
-        frame_derecho2 = tk.Frame(frame)
-        frame_derecho2.pack(fill="both", expand=False, padx=10, pady=10)
-
-        titulo = tk.Label(frame_derecho2, text="En esta ventana puede revisar el gráfico de los valores diarios promedio para todos los contaminantes en todas las estaciones en la base de datos, además también puede visualizar las primeras 40 filas de los datos utilizados en este análisis, usando los botones para mostrar el gráfico y los datos respectivamente.",
+        titulo = tk.Label(frame, text="En esta ventana puede revisar el gráfico de los valores diarios promedio para todos los contaminantes en todas las estaciones en la base de datos, además también puede visualizar las primeras 40 filas de los datos utilizados en este análisis, usando los botones para mostrar el gráfico y los datos respectivamente.",
                         font=fuente_descripcion, wraplength=700, justify="center")
         titulo.pack(pady=10)
 
@@ -186,10 +174,7 @@ class App:
         fuente_texto = ("Arial", 16, "bold")
         fuente_descripcion = ("Arial", 14)
 
-        frame_derecho = tk.Frame(frame)
-        frame_derecho.pack(fill="both", expand=False, padx=10, pady=10)
-
-        titulo = tk.Label(frame_derecho, text="Use la lista desplegable para seleccionar la estación para la cual desea conocer los valores diarios promedio para los contaminantes medidos. " \
+        titulo = tk.Label(frame, text="Use la lista desplegable para seleccionar la estación para la cual desea conocer los valores diarios promedio para los contaminantes medidos. " \
                                                 "Use los botones Mostrar el gráfico y Datos correspondientes, en el menú desplegable para ver el gráfico o los datos para la estación seleccionada.",
                         font=fuente_descripcion, wraplength=700, justify="center")
         titulo.pack(pady=10)
@@ -209,7 +194,7 @@ class App:
 
         estacion_seleccionada_nombre = tk.StringVar(value=nombres_estaciones[0])
 
-        combobox = ttk.Combobox(frame_derecho, textvariable=estacion_seleccionada_nombre, values=nombres_estaciones, state="readonly", font=fuente_texto)
+        combobox = ttk.Combobox(frame, textvariable=estacion_seleccionada_nombre, values=nombres_estaciones, state="readonly", font=fuente_texto)
         combobox.pack(pady=10)
 
         frame_contenido = tk.Frame(frame)
@@ -261,9 +246,6 @@ class App:
         label.pack(pady=20)
 
         fuente_descripcion = ("Arial", 14)
-        
-        # frame2 = ttk.Frame(frame)
-        # frame.pack(fill="both", expand=True, padx=10, pady=10)
 
         titulo = ttk.Label(frame, text="Para visualizar los nombres de las estaciones haga click sobre el marcador de la estación en el mapa.",
                         font=fuente_descripcion, wraplength=700, justify="center")
@@ -301,7 +283,7 @@ class App:
 
         return frame
 
-    def crear_salir(self):
+    def salir(self):
         frame = tk.Frame(self.container, bg="white")
         label = tk.Label(frame, text="🚪 ¿Deseas salir?", font=("Arial", 24))
         label.pack(pady=20)
