@@ -1,11 +1,11 @@
 import tkintermapview
 import pandas as pd
-from database_info import coord
-from tema import apply_theme_to_titlebar_dinamico
+from .database_info import coord
+from .tema import apply_theme_to_titlebar_dinamico
 import tkinter as tk
 from tkinter import ttk
 from tkinter import PhotoImage
-from adj_ven import centro
+from .adj_ven import centro
 
 def ventana4(parent, coordenadas):
 

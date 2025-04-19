@@ -32,8 +32,8 @@ class maestro(tk.Tk):
 
     def ventana_principal(self):
 
-        path=r'Calidad del aire\Proyecto\Bases'
-        path2=r'Calidad del aire\Proyecto\Estaciones'
+        path=r'aire\proyecto\bases'
+        path2=r'aire\proyecto\estaciones'
 
         frame2=data(path)
         coordenadas = coord(path2)
