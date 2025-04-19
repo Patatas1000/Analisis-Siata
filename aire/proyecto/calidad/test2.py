@@ -4,6 +4,10 @@ from ttkbootstrap.constants import *
 from tema import apply_theme_to_titlebar_dinamico
 from tema import windows_theme_dinamico
 from adj_ven import centro
+from all_stations import mostrar_todo
+from all_stations import mostrar_dataframe
+from database_info import data
+from database_info import coord
 
 class App:
     def __init__(self, root):
@@ -111,9 +115,50 @@ class App:
         return frame
 
     def crear_perfil(self):
+
+        path=r'aire\proyecto\bases'
+        path2=r'aire\proyecto\estaciones'
+
+        frame2=data(path)
+        coordenadas = coord(path2)
+
+        fuente_titulo = ("Arial", 20, "bold")
+        fuente_texto = ("Arial", 16, "bold")
+        fuente_descripcion = ("Arial", 14)
+
         frame = tk.Frame(self.container, bg="white")
-        label = tk.Label(frame, text="👤 Perfil de Usuario", font=("Arial", 24))
+        label = tk.Label(frame, text="Análisis en todas las estaciones", font=("Arial", 24))
         label.pack(pady=20)
+ 
+        frame_derecho2 = tk.Frame(frame)
+        frame_derecho2.pack(fill="both", expand=False, padx=10, pady=10)
+
+        titulo = tk.Label(frame_derecho2, text="En esta ventana puede revisar el gráfico de los valores diarios promedio para todos los contaminantes en todas las estaciones en la base de datos, además también puede visualizar las primeras 40 filas de los datos utilizados en este análisis, usando los botones para mostrar el gráfico y los datos respectivamente.",
+                        font=fuente_descripcion, wraplength=700, justify="center")
+        titulo.pack(pady=10)
+
+        frame_grafico = tk.Frame(frame)
+        frame_grafico.pack(pady=20, fill="both", expand=True)
+
+        botones = [
+            ("Mostrar gráfico"),
+            ("Mostrar datos")]
+
+        def manejar_evento2(evento):
+            if evento == "Mostrar gráfico":
+                mostrar_todo(frame2, frame_grafico)             
+            elif evento == "Mostrar datos":
+                mostrar_dataframe(frame2, frame_grafico)
+
+        for texto in botones:
+            boton = tk.Button(
+                frame,
+                text=texto,
+                width=20,
+                command=lambda t=texto: manejar_evento2(t),
+            )
+            boton.pack(side="left", pady=10)
+
         return frame
 
     def crear_configuracion(self):
