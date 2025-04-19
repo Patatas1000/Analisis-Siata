@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import regex as rg
 import matplotlib.pyplot as plt
-from .database_info import data
+from database_info import data
 import glob
 import os
 

@@ -5,19 +5,19 @@ from tkinter import *
 import sv_ttk
 import darkdetect
 import pywinstyles, sys
-from .database_info import data
-from .database_info import coord
-from .all_stations import all
-from .all_stations import mostrar_dataframe
-from .per_station import mostrar_grafico_est
-from .per_station import mostrar_dataframe_est
-from .vent_all import ventana2
-from .vent_est import ventana3
-from .vent_lim import ventana5
-from .vent_map import ventana4
-from .adj_ven import centro
-from .tema import apply_theme_to_titlebar_dinamico
-from .tema import windows_theme_dinamico
+from database_info import data
+from database_info import coord
+from all_stations import all
+from all_stations import mostrar_dataframe
+from per_station import mostrar_grafico_est
+from per_station import mostrar_dataframe_est
+from vent_all import ventana2
+from vent_est import ventana3
+from vent_lim import ventana5
+from vent_map import ventana4
+from adj_ven import centro
+from tema import apply_theme_to_titlebar_dinamico
+from tema import windows_theme_dinamico
 import numpy as np
 import pandas as pd
 import regex as rg

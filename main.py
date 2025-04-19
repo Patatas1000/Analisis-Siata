@@ -1,7 +1,10 @@
 from aire.proyecto.calidad.master import maestro
 from tkinter import ttk
+import ttkbootstrap as tb
+# from ttkbootstrap import ttk
+from ttkbootstrap.constants import *
 from tkinter import PhotoImage
-from tkinter import *
+from tkinter import font
 import sv_ttk
 import darkdetect
 import pywinstyles, sys
