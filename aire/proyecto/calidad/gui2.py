@@ -38,7 +38,7 @@ def ventana_principal():
 
     w , h = 1126 , 634
 
-    centro(self, w, h)
+    centro(ventana, w, h)
 
     fuente_titulo = ("Arial", 20, "bold")
     fuente_texto = ("Arial", 16, "bold")
@@ -125,101 +125,3 @@ def ventana_principal():
     ventana.mainloop()
 
 ventana_principal()
-
-def ventana_principal(self):
-
-    path=r'Calidad del aire\Proyecto\Bases'
-    path2=r'Calidad del aire\Proyecto\Estaciones'
-
-    frame2=data(path)
-    coordenadas = coord(path2)
-
-    # ventana = tk.Tk()
-    self.title("Análisis calidad del aire de Medellín")
-    # ventana.geometry("1126x634")
-
-    w , h = 1126 , 634
-
-    centro(self, w, h)
-
-    fuente_titulo = ("Arial", 20, "bold")
-    fuente_texto = ("Arial", 16, "bold")
-    fuente_descripcion = ("Arial", 14)
-
-    frame_derecho = ttk.Frame(self)
-    frame_derecho.pack(side="right", fill="both", expand=True, padx=10, pady=10)
-
-    titulo = ttk.Label(frame_derecho, text="Calidad del aire", font=fuente_titulo)
-    titulo.pack(pady=10)
-
-    nombres = ttk.Label(
-        frame_derecho,
-        text="Juan Diego Suárez Agualimpia \nIngeniero Químico \nUniversidad Nacional de Colombia",
-        font=fuente_texto,justify="center"
-    )
-    nombres.pack(pady=10)
-
-    titulo_desc = ttk.Label(
-        frame_derecho,
-        text="Análsis de los datos provenientes del SIATA",
-        font=fuente_texto,
-    )
-    titulo_desc.pack(pady=10)
-
-    descripcion = ttk.Label(
-        frame_derecho,
-        text=(
-            "El Sistema de Alerta Temprana de Medellín y el Valle de Aburrá (SIATA) es un sistema que busca prevenir y mitigar los efectos de la contaminación del aire en la región. Este análisis se centra en los datos recopilados por el SIATA, que incluyen información sobre la calidad del aire, las condiciones meteorológicas y otros factores relevantes. El objetivo es proporcionar una visión general de la calidad del aire en Medellín y su evolución a lo largo del tiempo."
-        ),
-        font=fuente_descripcion,
-        wraplength=700,
-        justify="left",
-    )
-    descripcion.pack(pady=20)
-
-    frame_izquierdo = ttk.Frame(self)
-    frame_izquierdo.place(x=10, y=100, width=200, height=500)
-    frame_izquierdo.pack_propagate(False)
-
-    frame_izquierdo.place_forget()
-
-    botones = [
-        "Todas las estaciones",
-        "Análisis por estación",
-        "Mapa estaciones",
-        "Índice parcial y global horario",
-        "Cancelar",
-    ]
-
-    for texto in botones:
-        boton = ttk.Button(
-            frame_izquierdo,
-            text=texto,
-            width=20,
-            command=lambda t=texto: manejar_evento(t),
-        )
-        boton.pack(pady=10)
-
-    def toggle_menu():
-        if frame_izquierdo.winfo_ismapped():
-            frame_izquierdo.place_forget()
-        else:
-            frame_izquierdo.place(x=0, y=140, width=200, height=1080)
-
-    boton_menu = ttk.Button(self, text="Menú", command=toggle_menu)
-    boton_menu.place(x=10, y=10)
-
-    def manejar_evento(evento):
-        if evento == "Cancelar":
-            self.destroy()
-        elif evento == "Todas las estaciones":
-            ventana2(self,frame2)
-        elif evento == "Análisis por estación":
-            ventana3(self,frame2,coordenadas)
-        elif evento == "Mapa estaciones":
-            ventana4(self,coordenadas)
-        elif evento == "Índice de calidad del aire":
-            ventana5(self)
-
-    windows_theme_dinamico(self)
-    apply_theme_to_titlebar_dinamico(self)

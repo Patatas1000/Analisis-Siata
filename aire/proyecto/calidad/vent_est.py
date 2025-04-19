@@ -18,7 +18,7 @@ def ventana3(parent, frame2, coordenadas):
 
     w , h = 1126 , 634
 
-    centro(self, w, h)
+    centro(ventana3, w, h)
 
     fuente_titulo = ("Arial", 20, "bold")
     fuente_texto = ("Arial", 16, "bold")

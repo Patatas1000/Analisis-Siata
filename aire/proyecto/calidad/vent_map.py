@@ -19,7 +19,7 @@ def ventana4(parent, coordenadas):
     
     w , h = 1126 , 634
 
-    centro(self, w, h)
+    centro(vent_map, w, h)
 
     frame = ttk.Frame(vent_map)
     frame.pack(fill="both", expand=True, padx=10, pady=10)
