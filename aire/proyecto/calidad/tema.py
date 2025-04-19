@@ -2,56 +2,31 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import PhotoImage
 from tkinter import *
+import ttkbootstrap as tb
 import sv_ttk
 import darkdetect
 import pywinstyles, sys
 
-def apply_theme_to_titlebar_dinamico(ventana):
-    timer_id = None
+def apply_theme_to_titlebar(ventana):
+    tema_actual = darkdetect.theme().lower()
 
-    def actualizar_titulo():
-        nonlocal timer_id
-        if not ventana.winfo_exists():
-            return
-
-        tema_actual = darkdetect.theme().lower()
-
-        version = sys.getwindowsversion()
-        if version.major == 10 and version.build >= 22000:
+    version = sys.getwindowsversion()
+    if version.major == 10 and version.build >= 22000:
+        try:
             pywinstyles.change_header_color(ventana, "#1c1c1c" if tema_actual == "dark" else "#fafafa")
-        elif version.major == 10:
+        except Exception as e:
+            print(f"Error al cambiar el color del encabezado (Windows 11+): {e}")
+    elif version.major == 10:
+        try:
             pywinstyles.apply_style(ventana, "dark" if tema_actual == "dark" else "normal")
-            
             ventana.wm_attributes("-alpha", 0.99)
             ventana.wm_attributes("-alpha", 1)
+        except Exception as e:
+            print(f"Error al aplicar estilo a la ventana (Windows 10): {e}")
 
-        timer_id = ventana.after(1000, actualizar_titulo)
-
-    def on_close():
-        nonlocal timer_id
-        if timer_id:
-            ventana.after_cancel(timer_id)
-        ventana.destroy()
-
-    ventana.protocol("WM_DELETE_WINDOW", on_close)
-
-    actualizar_titulo()
-
-def windows_theme_dinamico(ventana):
-    timer_id = None
-
-    def actualizar_tema():
-        global timer_id
-        if ventana.winfo_exists():
-            nuevo_tema = darkdetect.theme().lower()
-            if sv_ttk.get_theme() != nuevo_tema:
-                sv_ttk.set_theme(nuevo_tema)
-            timer_id = ventana.after(1000, actualizar_tema)
-
-    def on_close():
-        if timer_id:
-            ventana.after_cancel(timer_id)
-        ventana.destroy()
-
-    ventana.protocol("WM_DELETE_WINDOW", on_close)
-    actualizar_tema()
+def window_theme(ventana):
+    
+    if darkdetect.theme().lower() == "dark":
+        tb.Style("darkly")
+    else:
+        tb.Style("flatly")

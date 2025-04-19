@@ -7,7 +7,7 @@ import darkdetect
 import pywinstyles, sys
 from database_info import data
 from database_info import coord
-from all_stations import all
+from all_stations import mostrar_todo
 from all_stations import mostrar_dataframe
 from per_station import mostrar_grafico_est
 from per_station import mostrar_dataframe_est

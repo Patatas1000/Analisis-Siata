@@ -1,8 +1,8 @@
 import tkinter as tk
 import ttkbootstrap as tb
 from ttkbootstrap.constants import *
-from tema import apply_theme_to_titlebar_dinamico
-from tema import windows_theme_dinamico
+from tema import apply_theme_to_titlebar
+from tema import window_theme
 from adj_ven import centro
 from all_stations import mostrar_todo
 from all_stations import mostrar_dataframe
@@ -19,7 +19,7 @@ class App:
         self.menu_width = 170
 
         # Estilo solo para el menú
-        self.menu_style = tb.Style("darkly")
+        # self.menu_style = tb.Style("darkly")
 
         # Crear contenedor para las vistas internas
         self.container = tk.Frame(self.root, bg="#f0f0f0")
@@ -38,7 +38,7 @@ class App:
         # Vistas (frames)
         self.frames = {
             "Inicio": self.crear_inicio(),
-            "Perfil": self.crear_perfil(),
+            "Análisis total": self.crear_perfil(),
             "Configuración": self.crear_configuracion(),
             "Salir": self.crear_salir()
         }
@@ -52,7 +52,8 @@ class App:
 
         # Mostrar inicio por defecto
         self.mostrar_frame("Inicio")
-        apply_theme_to_titlebar_dinamico(self.root)
+        apply_theme_to_titlebar(self.root)
+        window_theme(self.root)
 
     def toggle_menu(self):
         if self.menu_visible:
@@ -139,6 +140,9 @@ class App:
 
         frame_grafico = tk.Frame(frame)
         frame_grafico.pack(pady=20, fill="both", expand=True)
+        
+        frame_botones = tk.Frame(frame)
+        frame_botones.pack(pady=10)
 
         botones = [
             ("Mostrar gráfico"),
@@ -152,12 +156,12 @@ class App:
 
         for texto in botones:
             boton = tk.Button(
-                frame,
+                frame_botones,
                 text=texto,
                 width=20,
                 command=lambda t=texto: manejar_evento2(t),
             )
-            boton.pack(side="left", pady=10)
+            boton.pack(side="left", padx=5)
 
         return frame
 
