@@ -229,7 +229,7 @@ class App:
                 command=lambda t=texto: manejar_evento3(t),
             )
             boton.pack(side="left", padx=5)
-            
+
         return frame
 
     def mapa(self):
@@ -294,7 +294,7 @@ class App:
                     estaciones_densidad[nombre_estacion] += 1
 
         earth_radius_km = 6371
-        area_km2 = math.pi * (radio_km**2)
+        area_km2 = math.pi * ((radio_km/1000)**2)
 
         for nombre_estacion, num_empresas in estaciones_densidad.items():
             estacion_info = coordenadas_estaciones[coordenadas_estaciones['Estacion'] == nombre_estacion].iloc[0]
