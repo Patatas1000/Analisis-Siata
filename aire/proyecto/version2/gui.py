@@ -13,6 +13,8 @@ from per_station import mostrar_grafico_est
 from per_station import mostrar_dataframe_est
 from database_info import data
 from database_info import coord
+from database_info import empr
+from mapdens import dist
 
 class App:
     def __init__(self, root):
@@ -117,6 +119,7 @@ class App:
 
         path=r'aire\proyecto\bases'
         path2=r'aire\proyecto\estaciones'
+        path3=r'aire\proyecto\indus'
 
         frame2=data(path)
         coordenadas = coord(path2)
@@ -232,13 +235,14 @@ class App:
 
         return frame
 
-    # def mapa(self):
+    # def mapa(self):  
+    #     path = r'aire\proyecto\bases'
+    #     path2 = r'aire\proyecto\estaciones'
+    #     path3=r'aire\proyecto\indus'
 
-    #     path=r'aire\proyecto\bases'
-    #     path2=r'aire\proyecto\estaciones'
-
-    #     frame2=data(path)
+    #     frame2 = data(path)
     #     coordenadas = coord(path2)
+    #     enterp=empr(path3)
 
     #     columnas = ['Estacion', 'Longitud', 'Latitud', 'Ciudad']
     #     Cities = ['Medellin', 'Medellín']
@@ -249,8 +253,13 @@ class App:
 
     #     fuente_descripcion = ("Arial", 14)
 
-    #     titulo = ttk.Label(frame, text="Para visualizar los nombres de las estaciones haga click sobre el marcador de la estación en el mapa.",
-    #                     font=fuente_descripcion, wraplength=700, justify="center")
+    #     titulo = ttk.Label(
+    #         frame,
+    #         text="Para visualizar los nombres de las estaciones haga click sobre el marcador de la estación en el mapa.",
+    #         font=fuente_descripcion,
+    #         wraplength=700,
+    #         justify="center"
+    #     )
     #     titulo.pack(pady=10)
 
     #     map_widget = tkintermapview.TkinterMapView(frame)
@@ -273,9 +282,12 @@ class App:
     #         coord2 = coordenadas.loc[coordenadas['Ciudad'] == city, columnas]
     #         fr[city] = coord2
     #         for i, row in coord2.iterrows():
+    #             lat, lon = row['Latitud'], row['Longitud']
+
+                
     #             marker = map_widget.set_marker(
-    #                 row['Latitud'],
-    #                 row['Longitud'],
+    #                 lat,
+    #                 lon,
     #                 text="",
     #                 marker_color_circle="black",
     #                 marker_color_outside="darkblue",
@@ -283,14 +295,30 @@ class App:
     #             )
     #             markers[marker] = row['Estacion']
 
+                
+    #             num_points = 6
+    #             radius_km = 1
+    #             earth_radius_km = 6371
+
+    #             circle_points = []
+    #             for j in range(num_points):
+    #                 angle = (j / num_points) * 2 * math.pi
+    #                 delta_lat = (radius_km / earth_radius_km) * (180 / math.pi) * math.sin(angle)
+    #                 delta_lon = (radius_km / earth_radius_km) * (180 / math.pi) * math.cos(angle) / math.cos(math.radians(lat))
+    #                 circle_points.append((lat + delta_lat, lon + delta_lon))
+
+    #             map_widget.set_polygon(circle_points, outline_color="red", fill_color="red")
+
     #     return frame
 
-    def mapa(self):  
+    def mapa(self):
         path = r'aire\proyecto\bases'
         path2 = r'aire\proyecto\estaciones'
+        path3 = r'aire\proyecto\indus'
 
         frame2 = data(path)
-        coordenadas = coord(path2)
+        coordenadas_estaciones = coord(path2)
+        empresas = empr(path3)
 
         columnas = ['Estacion', 'Longitud', 'Latitud', 'Ciudad']
         Cities = ['Medellin', 'Medellín']
@@ -317,6 +345,7 @@ class App:
         map_widget.set_zoom(14)
 
         markers = {}
+        estaciones_data = {} # Diccionario para almacenar datos de cada estación
 
         def marker_clicked(marker):
             if marker.text == "":
@@ -327,35 +356,68 @@ class App:
 
         fr = {}
         for city in Cities:
-            coord2 = coordenadas.loc[coordenadas['Ciudad'] == city, columnas]
+            coord2 = coordenadas_estaciones.loc[coordenadas_estaciones['Ciudad'] == city, columnas]
             fr[city] = coord2
             for i, row in coord2.iterrows():
-                lat, lon = row['Latitud'], row['Longitud']
+                lat_estacion, lon_estacion = row['Latitud'], row['Longitud']
+                nombre_estacion = row['Estacion']
 
-                # Crear marcador de estación
                 marker = map_widget.set_marker(
-                    lat,
-                    lon,
+                    lat_estacion,
+                    lon_estacion,
                     text="",
                     marker_color_circle="black",
                     marker_color_outside="darkblue",
                     command=marker_clicked
                 )
-                markers[marker] = row['Estacion']
+                markers[marker] = nombre_estacion
+                estaciones_data[nombre_estacion] = {'lat': lat_estacion, 'lon': lon_estacion, 'empresas_cercanas': []}
 
-                # Dibujar un círculo alrededor de la estación
-                num_points = 20  # Más puntos mejoran la forma del círculo
-                radius_km = 1
-                earth_radius_km = 6371
+        # Revisar proximidad de empresas a las estaciones
+        for nombre_empresa, row_empresa in empresas.iterrows():
+            lon_empresa, lat_empresa = row_empresa['Longitud'], row_empresa['Latitud']
+            distancia_minima = float('inf')
+            estacion_mas_cercana = None
 
-                circle_points = []
-                for j in range(num_points):
-                    angle = (j / num_points) * 2 * math.pi
-                    delta_lat = (radius_km / earth_radius_km) * (180 / math.pi) * math.sin(angle)
-                    delta_lon = (radius_km / earth_radius_km) * (180 / math.pi) * math.cos(angle) / math.cos(math.radians(lat))
-                    circle_points.append((lat + delta_lat, lon + delta_lon))
+            for nombre_estacion, data_estacion in estaciones_data.items():
+                lat_emp=bool(data_estacion['lat'])
+                lon_emp=bool(data_estacion['lon'])
+                distancia = dist(lat_empresa, lon_empresa, data_estacion['lat'], data_estacion['lon'])
+                if distancia < distancia_minima:
+                    distancia_minima = distancia
+                    estacion_mas_cercana = nombre_estacion
 
-                map_widget.set_polygon(circle_points, outline_color="red", fill_color="red")
+            if estacion_mas_cercana and distancia_minima <= 1:
+                estaciones_data[estacion_mas_cercana]['empresas_cercanas'].append(nombre_empresa)
+
+        # Calcular densidad y dibujar círculos
+        earth_radius_km = 6371
+        for nombre_estacion, data_estacion in estaciones_data.items():
+            lat_estacion = data_estacion['lat']
+            lon_estacion = data_estacion['lon']
+            num_empresas = len(data_estacion['empresas_cercanas'])
+
+            # Área del círculo de 1 km de radio (aproximación en la Tierra)
+            area_km2 = math.pi * (1**2)
+
+            densidad = num_empresas / area_km2 if area_km2 > 0 else 0
+
+            # Dibujar círculo alrededor de la estación
+            num_points = 12
+            radius_km = 1
+            circle_points = []
+            for j in range(num_points):
+                angle = (j / num_points) * 2 * math.pi
+                delta_lat = (radius_km / earth_radius_km) * (180 / math.pi) * math.sin(angle)
+                delta_lon = (radius_km / earth_radius_km) * (180 / math.pi) * math.cos(angle) / math.cos(math.radians(lat_estacion))
+                circle_points.append((lat_estacion + delta_lat, lon_estacion + delta_lon))
+
+            # El color del círculo podría depender de la densidad
+            fill_color = f"#{int(min(255, densidad * 20)):02x}0000" # Rojo más intenso con mayor densidad
+            map_widget.set_polygon(circle_points, outline_color="red", fill_color=fill_color)
+
+            # Opcional: Mostrar la densidad como texto en un marcador cerca de la estación
+            map_widget.set_marker(lat_estacion + 0.005, lon_estacion + 0.005, text=f"{densidad:.2f}", text_color="black")
 
         return frame
 

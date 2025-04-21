@@ -1,0 +1,71 @@
+Empresa,Longitud,Latitud,Ciudad
+Químicos y Químicos S.A.,6.2121708,-75.6027417,Medellín
+Chemicol,6.2548592,-75.5883692,Medellín
+Distribuidora de Quimicos Industriales,6.1977318,-75.6019577,Medellín
+Antioqueña de Químicos SAS,6.2520582,-75.592824,Medellín
+Innovación Química,6.2363564,-75.5697068,Medellín
+Alfaquímicos SAS,6.2199218,-75.5960189,Medellín
+Antioqueña de Químicos - Guayabal,6.195958,-75.6082989,Medellín
+Materiales y Químicos S.A.,6.2091024,-75.5774978,Medellín
+Quimicos Borani,6.221615,-75.6028949,Medellín
+Químicos Macar,6.2368808,-75.5915703,Medellín
+Quimicos y Disolventes EL PALO,6.2368808,-75.5915703,Medellín
+Representaciones L M G,6.2368808,-75.5915703,Medellín
+Colquímicos,6.1514606,-75.6438893,Medellín
+GMP PRODUCTOS QUÍMICOS S.A.S,6.2019883,-75.6058226,Medellín
+Flow Chem SAS,6.2019883,-75.6058226,Medellín
+Acimax,6.2230643,-75.6025215,Medellín
+Quimi Tintas SAS,6.2564832,-75.5904544,Medellín
+Grupo Procesos Químicos Industriales,6.2564832,-75.5904544,Medellín
+Polikem S.a.s.,6.2176573,-75.5888385,Medellín
+CONQUÍMICA S.A.S,6.1687252,-75.6230871,Medellín
+Químicos LM,6.2658285,-75.5840261,Medellín
+CLQ Colorquimica,6.1582111,-75.6501645,Medellín
+L y F Ltda.,6.2629966,-75.5869556,Medellín
+Estacion VIT Medellín,6.2838598,-75.5886235,Medellín
+Master Química SAS,6.2437416,-75.5754687,Medellín
+POLIQUIMICOS S.A.S.6.2195842,-75.5985779,Medellín
+Logica Química,6.2178148,-75.6133311,Medellín
+IMDECO S.A.S,6.2383086,-75.6015801,Medellín
+Pochteca,6.1566375,-75.6311941,Medellín
+Antioqueña de Químicos - Itagüí,6.1566375,-75.6311941,Medellín
+SOLVITINTAS,6.2062123,-75.6045854,Medellín
+Absorquim A&Q S.A.S.,6.1627469,-75.6368643,Medellín
+Dazar Química,6.248734,-75.6098479,Medellín
+Laboratorios Aldoquin Ltda.,6.1778623,-75.5704822,Medellín
+Quimicos y tintas alfa,6.2550851,-75.5908301,Medellín
+Sapolin,6.2495171,-75.6206934,Medellín
+West Química,6.154859,-75.643539,Medellín
+PRODUCTOS EL ARRIERO CÍA. LTDA.,6.2502785,-75.592653,Medellín
+Postobon Factory S.A.,6.2254515,-75.5962251,Medellín
+Postobón S.A.,6.3286338,-75.5726585,Medellín
+Postobon Itagüí,6.174793,-75.601894,Medellín
+Coca Cola FEMSA,6.2649408,-75.5793726,Medellín
+Industrias Tecnidicol,6.2146735,-75.6542479,Medellín
+Industrias Plasticas de Medellín,6.2146735,-75.6542479,Medellín
+Industria MIG SAS,6.2146735,-75.6542479,Medellín
+Industria Sobre Ruedas S.A.S.,6.2146735,-75.6542479,Medellín
+Industrias Alvi,6.2146735,-75.6542479,Medellín
+ICAL Industria de alimentos,6.2146735,-75.6542479,Medellín
+Industrias Norte S.A.S,6.2146735,-75.6542479,Medellín
+INDUSTRIAS M ACEROS,6.2146735,-75.6542479,Medellín
+Industrias Famec S.A.S,6.2146735,-75.6542479,Medellín
+Industrias HRV SAS,6.2146735,-75.6542479,Medellín
+Abrasivos Industriales SAS,6.2146735,-75.6542479,Medellín
+Prebel - Sede Industrial,6.2146735,-75.6542479,Medellín
+Industrias Centricol S.A.S,6.2146735,-75.6542479,Medellín
+Industria De Maderas W.a.r.,6.2146735,-75.6542479,Medellín
+Industrias Plásticas Micrisol,6.2146735,-75.6542479,Medellín
+JA Industrias,6.2146735,-75.6542479,Medellín
+Industrias Yesmor Ltda,6.2146735,-75.6542479,Medellín
+Ecopetrol Medellín,6.2146735,-75.6542479,Medellín
+UNIROCA Medellín,6.2146735,-75.6542479,Medellín
+ACEROS Y BRONCES INDUSTRIALES S.A.S,6.2146735,-75.6542479,Medellín
+MONTAJES Y SOLUCIONES INDUSTRIALES S.A.S,6.2146735,-75.6542479,Medellín
+Ravenna Industrial SAS,6.2146735,-75.6542479,Medellín
+Industria Metalmecánica CAMU LTDA.,6.2146735,-75.6542479,Medellín
+Industrias Dipsa,6.2146735,-75.6542479,Medellín
+INDUSTRIA YEITE'X S.A.S,6.2146735,-75.6542479,Medellín
+BETALTORN,6.2146735,-75.6542479,Medellín
+Maquiequipos De Colombia S.A.S,6.2146735,-75.6542479,Medellín
+CONCAUCHOS Y PLASTICOS,6.2146735,-75.6542479,Medellín

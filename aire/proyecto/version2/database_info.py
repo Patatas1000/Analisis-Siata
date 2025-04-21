@@ -7,7 +7,7 @@ import os
 
 # path=r'Calidad del aire\Proyecto\Datos'
 # path=r'Calidad del aire\Proyecto\Bases'
-
+# path3=r'aire\proyecto\indus'
 def data(path):
 
     all_files = glob.glob(os.path.join(path + "/*.csv"))
@@ -34,8 +34,14 @@ def data(path):
 
 # path2 = r'Calidad del aire\Proyecto\Estaciones'
 # path2= r'C:\Users\ivans\OneDrive\Desktop\Juan\Analisis-Siata\Calidad del aire\Proyecto\Estaciones'
+
 def coord(path2):
 
     estaciones = pd.read_csv(path2 + '/Estaciones_CalidadAire.txt', sep=";")
     estaciones.set_index('Codigo', inplace=True)
     return(estaciones)
+
+def empr(path3):
+    ent=pd.read_csv(path3 + '/industria.txt', sep=",")
+    ent.set_index('Empresa', inplace=True)
+    return(ent)
