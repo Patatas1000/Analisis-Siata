@@ -3,6 +3,7 @@ from tkinter import ttk
 import ttkbootstrap as tb
 from ttkbootstrap.constants import *
 import tkintermapview
+import math
 from tema import apply_theme_to_titlebar
 from tema import window_theme
 from adj_ven import centro
@@ -38,6 +39,7 @@ class App:
             "Análisis total": self.todas(),
             "Análisis por estación": self.estacion(),
             "Mapa":self.mapa(),
+            "Glosario": self.glosario(),
             "Salir": self.salir()
         }
 
@@ -230,12 +232,64 @@ class App:
 
         return frame
 
-    def mapa(self):
+    # def mapa(self):
 
-        path=r'aire\proyecto\bases'
-        path2=r'aire\proyecto\estaciones'
+    #     path=r'aire\proyecto\bases'
+    #     path2=r'aire\proyecto\estaciones'
 
-        frame2=data(path)
+    #     frame2=data(path)
+    #     coordenadas = coord(path2)
+
+    #     columnas = ['Estacion', 'Longitud', 'Latitud', 'Ciudad']
+    #     Cities = ['Medellin', 'Medellín']
+
+    #     frame = tk.Frame(self.container, bg="white")
+    #     label = tk.Label(frame, text="Mapa de las estaciones y fuentes de contaminantes", font=("Arial", 24))
+    #     label.pack(pady=20)
+
+    #     fuente_descripcion = ("Arial", 14)
+
+    #     titulo = ttk.Label(frame, text="Para visualizar los nombres de las estaciones haga click sobre el marcador de la estación en el mapa.",
+    #                     font=fuente_descripcion, wraplength=700, justify="center")
+    #     titulo.pack(pady=10)
+
+    #     map_widget = tkintermapview.TkinterMapView(frame)
+    #     map_widget.pack(fill="both", expand=True)
+
+    #     map_widget.set_position(6.25256, -75.56958)
+    #     map_widget.set_zoom(14)
+
+    #     markers = {}
+
+    #     def marker_clicked(marker):
+    #         if marker.text == "":
+    #             estacion_nombre = markers[marker]
+    #             marker.set_text(estacion_nombre)
+    #         else:
+    #             marker.set_text("")
+
+    #     fr = {}
+    #     for city in Cities:
+    #         coord2 = coordenadas.loc[coordenadas['Ciudad'] == city, columnas]
+    #         fr[city] = coord2
+    #         for i, row in coord2.iterrows():
+    #             marker = map_widget.set_marker(
+    #                 row['Latitud'],
+    #                 row['Longitud'],
+    #                 text="",
+    #                 marker_color_circle="black",
+    #                 marker_color_outside="darkblue",
+    #                 command=marker_clicked
+    #             )
+    #             markers[marker] = row['Estacion']
+
+    #     return frame
+
+    def mapa(self):  
+        path = r'aire\proyecto\bases'
+        path2 = r'aire\proyecto\estaciones'
+
+        frame2 = data(path)
         coordenadas = coord(path2)
 
         columnas = ['Estacion', 'Longitud', 'Latitud', 'Ciudad']
@@ -247,8 +301,13 @@ class App:
 
         fuente_descripcion = ("Arial", 14)
 
-        titulo = ttk.Label(frame, text="Para visualizar los nombres de las estaciones haga click sobre el marcador de la estación en el mapa.",
-                        font=fuente_descripcion, wraplength=700, justify="center")
+        titulo = ttk.Label(
+            frame,
+            text="Para visualizar los nombres de las estaciones haga click sobre el marcador de la estación en el mapa.",
+            font=fuente_descripcion,
+            wraplength=700,
+            justify="center"
+        )
         titulo.pack(pady=10)
 
         map_widget = tkintermapview.TkinterMapView(frame)
@@ -271,9 +330,12 @@ class App:
             coord2 = coordenadas.loc[coordenadas['Ciudad'] == city, columnas]
             fr[city] = coord2
             for i, row in coord2.iterrows():
+                lat, lon = row['Latitud'], row['Longitud']
+
+                # Crear marcador de estación
                 marker = map_widget.set_marker(
-                    row['Latitud'],
-                    row['Longitud'],
+                    lat,
+                    lon,
                     text="",
                     marker_color_circle="black",
                     marker_color_outside="darkblue",
@@ -281,7 +343,29 @@ class App:
                 )
                 markers[marker] = row['Estacion']
 
+                # Dibujar un círculo alrededor de la estación
+                num_points = 20  # Más puntos mejoran la forma del círculo
+                radius_km = 1
+                earth_radius_km = 6371
+
+                circle_points = []
+                for j in range(num_points):
+                    angle = (j / num_points) * 2 * math.pi
+                    delta_lat = (radius_km / earth_radius_km) * (180 / math.pi) * math.sin(angle)
+                    delta_lon = (radius_km / earth_radius_km) * (180 / math.pi) * math.cos(angle) / math.cos(math.radians(lat))
+                    circle_points.append((lat + delta_lat, lon + delta_lon))
+
+                map_widget.set_polygon(circle_points, outline_color="red", fill_color="red")
+
         return frame
+
+    def glosario(self):
+        frame = tk.Frame(self.container, bg="white")
+        label = tk.Label(frame, text="Glosario", font=("Arial", 24))
+        label.pack(pady=20)
+        btn_salir = tk.Button(frame, text="Cerrar aplicación", command=self.root.destroy)
+        btn_salir.pack(pady=10)
+        return frame    
 
     def salir(self):
         frame = tk.Frame(self.container, bg="white")
