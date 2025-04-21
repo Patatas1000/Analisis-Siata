@@ -1,4 +1,4 @@
-Empresa,Longitud,Latitud,Ciudad
+Empresa,Latitud,Longitud,Ciudad
 Químicos y Químicos S.A.,6.2121708,-75.6027417,Medellín
 Chemicol,6.2548592,-75.5883692,Medellín
 Distribuidora de Quimicos Industriales,6.1977318,-75.6019577,Medellín
@@ -24,7 +24,7 @@ CLQ Colorquimica,6.1582111,-75.6501645,Medellín
 L y F Ltda.,6.2629966,-75.5869556,Medellín
 Estacion VIT Medellín,6.2838598,-75.5886235,Medellín
 Master Química SAS,6.2437416,-75.5754687,Medellín
-POLIQUIMICOS S.A.S.6.2195842,-75.5985779,Medellín
+POLIQUIMICOS S.A.S.,6.2195842,-75.5985779,Medellín
 Logica Química,6.2178148,-75.6133311,Medellín
 IMDECO S.A.S,6.2383086,-75.6015801,Medellín
 Pochteca,6.1566375,-75.6311941,Medellín

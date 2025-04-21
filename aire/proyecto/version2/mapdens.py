@@ -7,10 +7,10 @@ import math
 def dist(lat1, lon1, lat2, lon2):
     """Calcula la distancia en kilómetros entre dos puntos (lat, lon)."""
     R = 6371
-    lat1=bool(lat1)
-    lat2=bool(lat2)
-    lon1=bool(lon1)
-    lon2=bool(lon2)
+    # lat1=float(lat1)
+    # lat2=float(lat2)
+    # lon1=float(lon1)
+    # lon2=float(lon2)
     lat1_rad = math.radians(lat1)
     lon1_rad = math.radians(lon1)
     lat2_rad = math.radians(lat2)
